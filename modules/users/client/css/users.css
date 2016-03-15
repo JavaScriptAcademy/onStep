@@ -3,6 +3,10 @@
     position: fixed;
   }
 }
+
+.marginTop60{
+  margin-top: 60px;
+}
 .social-account-container {
   display: inline-block;
   position: relative;
