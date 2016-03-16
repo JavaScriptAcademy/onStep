@@ -35,3 +35,19 @@ a:hover .header-profile-image {
 .has-error .help-inline.error-text {
   display: inline;
 }
+
+/*footer style*/
+.fixed{
+  position: fixed;
+}
+.footer{
+  left: 0;
+  bottom: 0;
+}
+.footer a{
+  border-radius: 0;
+}
+.footer .btn-mid{
+  border-left: 0;
+  border-right: 0;
+}
