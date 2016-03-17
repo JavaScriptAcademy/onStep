@@ -10,6 +10,10 @@
           <input name="name" type="text" ng-model="vm.dish.name" id="name" class="form-control" placeholder="Name" required>
           <div ng-messages="vm.form.dishForm.name.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Dish name is required.</p>
+            <label class="control-label" for="name">dishImage</label>
+          <input name="dishImage" type="text" ng-model="vm.dish.dishImage" id="dishImage" class="form-control" placeholder="dishImage" required>
+          <label class="control-label" for="name">cookingSteps</label>
+          <input name="cookingSteps" type="text" ng-model="vm.dish.cookingSteps" id="cookingSteps" class="form-control" placeholder="cookingSteps" required>
           </div>
         </div>
         <div class="form-group">
