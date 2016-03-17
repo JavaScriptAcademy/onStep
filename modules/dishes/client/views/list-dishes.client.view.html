@@ -3,6 +3,7 @@
     <h1>Dishes</h1>
   </div>
   <div class="list-group">
+    <span>{{vm.test}}</span>
     <a data-ng-repeat="dish in vm.dishes"
        data-ui-sref="dishes.view({ dishId: dish._id })"
        class="list-group-item">

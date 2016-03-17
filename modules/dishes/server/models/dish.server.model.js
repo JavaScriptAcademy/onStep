@@ -4,7 +4,7 @@
 * Module dependencies.
 */
 var mongoose = require('mongoose'),
-Schema = mongoose.Schema;
+  Schema = mongoose.Schema;
 
 /**
 * Dish Schema
@@ -17,9 +17,16 @@ var DishSchema = new Schema({
     trim: true
   },
   dishImage   : String,
-  ingredients : [{name: String, price: Number, count: Number, weight: String}],
+  ingredients : [{ ingredientId: Number, name: String, price: Number, count: Number, weight: String }],
   cookingSteps: [String],
-  orderTimes  : Number
+  order : {
+    type:Schema.ObjectId,
+    ref: 'Order'
+  },
+  user: {
+    type: Schema.ObjectId,
+    ref: 'User'
+  }
 });
 
 mongoose.model('Dish', DishSchema);

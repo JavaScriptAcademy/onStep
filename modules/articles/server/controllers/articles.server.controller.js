@@ -5,113 +5,113 @@
  */
 var path = require('path'),
   mongoose = require('mongoose'),
-  Dish = mongoose.model('Dish'),
+  Article = mongoose.model('Article'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
 /**
- * Create a Dish
+ * Create a Article
  */
 exports.create = function(req, res) {
-  var dish = new Dish(req.body);
-  dish.user = req.user;
-  console.log(dish.user,req.user);
-  dish.save(function(err) {
+  var article = new Article(req.body);
+  article.user = req.user;
+  console.log(111);
+  article.save(function(err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(dish);
+      res.jsonp(article);
     }
   });
 };
 
 /**
- * Show the current Dish
+ * Show the current Article
  */
 exports.read = function(req, res) {
   // convert mongoose document to JSON
-  var dish = req.dish ? req.dish.toJSON() : {};
+  var article = req.article ? req.article.toJSON() : {};
 
   // Add a custom field to the Article, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
-  dish.isCurrentUserOwner = req.user && dish.user && dish.user._id.toString() === req.user._id.toString() ? true : false;
+  article.isCurrentUserOwner = req.user && article.user && article.user._id.toString() === req.user._id.toString() ? true : false;
 
-  res.jsonp(dish);
+  res.jsonp(article);
 };
 
 /**
- * Update a Dish
+ * Update a Article
  */
 exports.update = function(req, res) {
-  var dish = req.dish ;
+  var article = req.article ;
 
-  dish = _.extend(dish , req.body);
+  article = _.extend(article , req.body);
 
-  dish.save(function(err) {
+  article.save(function(err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(dish);
+      res.jsonp(article);
     }
   });
 };
 
 /**
- * Delete an Dish
+ * Delete an Article
  */
 exports.delete = function(req, res) {
-  var dish = req.dish ;
+  var article = req.article ;
 
-  dish.remove(function(err) {
+  article.remove(function(err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(dish);
+      res.jsonp(article);
     }
   });
 };
 
 /**
- * List of Dishes
+ * List of Articles
  */
 exports.list = function(req, res) {
-  Dish.find().sort('-created').populate('user', 'displayName').exec(function(err, dishes) {
+  Article.find().sort('-created').populate('user', 'displayName').exec(function(err, articles) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(dishes);
+      res.jsonp(articles);
     }
   });
 };
 
 /**
- * Dish middleware
+ * Article middleware
  */
-exports.dishByID = function(req, res, next, id) {
+exports.articleByID = function(req, res, next, id) {
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
-      message: 'Dish is invalid'
+      message: 'Article is invalid'
     });
   }
 
-  Dish.findById(id).populate('user', 'displayName').exec(function (err, dish) {
+  Article.findById(id).populate('user', 'displayName').exec(function (err, article) {
     if (err) {
       return next(err);
-    } else if (!dish) {
+    } else if (!article) {
       return res.status(404).send({
-        message: 'No Dish with that identifier has been found'
+        message: 'No Article with that identifier has been found'
       });
     }
-    req.dish = dish;
+    req.article = article;
     next();
   });
 };
