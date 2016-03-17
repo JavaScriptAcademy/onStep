@@ -10,19 +10,21 @@ var mongoose = require('mongoose'),
  * Order Schema
  */
 var OrderSchema = new Schema({
-  name: {
-    type: String,
-    default: '',
-    required: 'Please fill Order name',
-    trim: true
-  },
-  created: {
-    type: Date,
-    default: Date.now
-  },
-  user: {
+  _creator: {
     type: Schema.ObjectId,
     ref: 'User'
+  },
+  dishes:[
+    {
+      type:Schema.ObjectId,
+      ref: 'Dish'
+    }
+  ],
+  deliverInfo:{
+    address:String,
+    name: String,
+    phone: String,
+    time: String
   }
 });
 
