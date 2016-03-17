@@ -1,0 +1,15 @@
+<section ng-controller="PopularController">
+  <div>{{vm.name}}</div>
+  <div>{{user.name}}</div>
+  <div>{{user.class}}</div>
+  <div>{{articles}}</div>
+  <div ng-repeat="article in articles">
+    <li>
+      <div ng-show="article.title">
+        <h3>{{article.title}}</h3>
+        <div>{{article.content}}</div>
+      </div>
+    <li>
+  </div>
+  This is the Popular view
+</section>
