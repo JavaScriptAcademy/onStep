@@ -5,16 +5,13 @@
     .module('articles')
     .controller('PopularController', PopularController);
 
-  PopularController.$inject = ['$scope','Articles'];
+  PopularController.$inject = ['$scope','Articles','Authentication'];
 
-  function PopularController($scope, Articles) {
+  function PopularController($scope, Articles, Authentication) {
     var vm = this;
-    vm.name = 'Claire';
-    $scope.user = {
-      name: 'Claire',
-      class: 'JS Academy'
-    };
+
     $scope.articles = Articles.query();
+    $scope.user = Authentication.user;
 
     // Popular controller logic
     // ...

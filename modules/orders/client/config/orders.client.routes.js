@@ -9,6 +9,12 @@
 
   function routeConfig($stateProvider) {
     $stateProvider
+      .state('cart', {
+        url: '/cart',
+        templateUrl: 'modules/orders/client/views/cart.client.view.html',
+        controller: 'CartController',
+        controllerAs: 'vm'
+      })
       .state('orders', {
         abstract: true,
         url: '/orders',

@@ -1,3 +1,7 @@
+.content {
+  margin-top: 70px;
+}
+
 .undecorated-link:hover {
   text-decoration: none;
 }
@@ -33,28 +37,4 @@ a:hover .header-profile-image {
   display: inline;
 }
 
-/*nav bar style*/
-.nav-bar{
-  background-image: none;
-  background-color: transparent;
-  border: 1px solid #eee;
-  text-align: center;
-  font-size: 27px;
-  line-height: 50px;
-}
 
-/*footer style*/
-.fixed{
-  position: fixed;
-}
-.footer{
-  left: 0;
-  bottom: 0;
-}
-.footer a{
-  border-radius: 0;
-}
-.footer .btn-mid{
-  border-left: 0;
-  border-right: 0;
-}
