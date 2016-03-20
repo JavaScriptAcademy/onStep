@@ -5,9 +5,9 @@
     .module('orders')
     .controller('CartController', CartController);
 
-  CartController.$inject = ['$scope','OrdersService','$location'];
+  CartController.$inject = ['$scope','OrdersService','$location','$state'];
 
-  function CartController($scope, OrdersService, $location) {
+  function CartController($scope, OrdersService, $location, $state) {
     var vm = this;
     $scope.order = {
       _creator: null,
@@ -72,7 +72,8 @@
 
       // Redirect after save
       order.$save(function (response) {
-        $location.path('/deliver-info/' + response.orderId);
+        // $location.path('/deliver-info/' + response.orderId);
+        $state.go('deliver-info',{ orderId: response.orderId });
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });

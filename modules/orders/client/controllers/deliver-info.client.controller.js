@@ -5,10 +5,9 @@
     .module('orders')
     .controller('DeliverInfoController', DeliverInfoController);
 
-  DeliverInfoController.$inject = ['$scope','OrdersService','$location','$routeParams', '$route'];
+  DeliverInfoController.$inject = ['$scope','OrdersService','$location', '$state', '$stateParams'];
 
-  function DeliverInfoController($scope, OrdersService, $location, $routeParams, $route) {
-    console.log($routeParams.orderId);
+  function DeliverInfoController($scope, OrdersService, $location, $state, $stateParams) {
     var vm = this;
     $scope.deliverInfo = {
       address: null,
@@ -39,14 +38,13 @@
     };
 
     $scope.updateOrder = function(){
-      var order = OrdersService.get({ orderId:'56ee2f25d90a31b021022fc9' }, function() {
+      var order = OrdersService.get({ orderId: $stateParams.orderId }, function() {
         order.deliverInfo = $scope.deliverInfo;
         order.status = 'Paying';
-        console.log($location.url());
         //Redict after save
-        OrdersService.update({ id:'56ee2f25d90a31b021022fc9' }, order)
+        OrdersService.update({ id: $stateParams.orderId }, order)
           .$promise.then(function(response){
-            $location.path('orders/pay/' + response.id);
+            $state.go('pay',{ orderId: $stateParams.orderId });
           });
       });
     };
