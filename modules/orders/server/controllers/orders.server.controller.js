@@ -56,8 +56,8 @@ exports.read = function(req, res) {
  * Update a Order
  */
 exports.update = function(req, res) {
+  console.log('HI');
   var order = req.order;
-
   order = _.extend(order , req.body);
 
   order.save(function(err) {
@@ -114,7 +114,7 @@ exports.orderByID = function(req, res, next, id) {
     });
   }
 
-  Order.findById(id).populate('user', 'displayName').exec(function (err, order) {
+  Order.findById(id).populate('user', 'username').exec(function (err, order) {
     if (err) {
       return next(err);
     } else if (!order) {
