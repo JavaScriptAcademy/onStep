@@ -25,13 +25,13 @@
     //Get Init Order from local
     $scope.getInitOrder = function(){
       $scope.order.dishes = [{
-        id: '123456',
-        name: 'toduosi',
+        id: '56ee220493672e9c1944babc',
+        name: 'Tudousi',
         unitPrice: 20,
       },
       {
-        id: '123457',
-        name: 'Yurou',
+        id: '56ee2e7b93672e9c1944babe',
+        name: 'Tudoujikuai',
         unitPrice: 50,
       }];
 

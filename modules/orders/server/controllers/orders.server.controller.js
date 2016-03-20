@@ -13,16 +13,26 @@ var path = require('path'),
  * Create a Order
  */
 exports.create = function(req, res) {
-  var order = new Order(req.body);
-  order.user = req.user;
-
+  var order = new Order();
+  order._creator = req.user._id;
+  for(var i = 0; i < req.body.dishes.length; i++){
+    order.dishes.push({
+      id: req.body.dishes[i]._id,
+      quantity: req.body.dishes[i].quantity,
+      sumPrice: req.body.dishes[i].sumPrice
+    });
+  }
+  order.deliverInfo = req.body.deliverInfo;
+  order.totalPrice = req.body.totalPrice;
+  order.status = 'PreOrder';
+  console.log(order);
   order.save(function(err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(order);
+      res.jsonp(order._id);
     }
   });
 };
@@ -80,7 +90,7 @@ exports.delete = function(req, res) {
 /**
  * List of Orders
  */
-exports.list = function(req, res) { 
+exports.list = function(req, res) {
   Order.find().sort('-created').populate('user', 'displayName').exec(function(err, orders) {
     if (err) {
       return res.status(400).send({
