@@ -1,30 +1,47 @@
-<section>
-  <form class="form-horizontal">
+<section ng-controller="DeliverInfoController" ng-init='getUserDeliverInfo()'>
+  <form class="form-horizontal" ng-submit="updateOrder()">
     <div class="form-group">
-    <label class="col-sm-2 col-md-2 control-label">Address</label>
-    <div class="col-sm-10 col-md-10">
-      <input type="text" class="form-control" placeholder="Your address">
-    </div>
+      <label class="col-sm-2 col-md-2 control-label">Address</label>
+      <div class="col-sm-10 col-md-10">
+        <input type="text" list="deliverInfoDatalistAddress" class="form-control" placeholder="Your address" ng-model="deliverInfo.address">
+        <datalist id="deliverInfoDatalistAddress">
+          <option value="{{address}}" ng-repeat="address in deliverInfos.addresses">
+        </datalist>
+      </div>
     </div>
     <div class="form-group">
       <label class="col-sm-2 col-md-2 control-label">Name</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" placeholder="Your address">
+        <input type="text" list="deliverInfoDatalistName" class="form-control" placeholder="Your Name" ng-model="deliverInfo.name">
+        <datalist id="deliverInfoDatalistName">
+          <option value="{{name}}" ng-repeat="name in deliverInfos.names">
+        </datalist>
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-2 col-md-2 control-label">Phone Number</label>
       <div class="col-sm-10 col-md-10">
-        <input type="text" class="form-control" placeholder="Phone Number">
+        <input type="text" list="deliverInfoDatalistPhoneNumber" class="form-control" placeholder="Phone Number" ng-model="deliverInfo.phone">
+        <datalist id="deliverInfoDatalistPhoneNumber">
+          <option value="{{phone}}" ng-repeat="phone in deliverInfos.phones">
+        </datalist>
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-2 col-md-2 control-label">Expect Delivery Time</label>
       <div class="col-sm-5 col-md-5">
-        <input type="date" class="form-control"></input>
+        <input type="date" class="form-control" ng-model="deliverInfo.time.date"></input>
       </div>
-      <div class="col-sm-5 col-md-5">
-        <input type="time" class="form-control"></input>
+      <div class="col-sm-5 col-md-5" >
+        <input list="deliverInfoDatalistTimeTime" type="text" class="form-control" ng-model="deliverInfo.time.time"></input>
+        <datalist id="deliverInfoDatalistTimeTime">
+          <option value="09:00-12:00"></option>
+          <option value="12:00-14:00"></option>
+          <option value="14:00-16:00"></option>
+          <option value="16:00-18:00"></option>
+          <option value="18:00-20:00"></option>
+          <option value="20:00-22:00"></option>
+        </datalist>
       </div>
     </div>
     <div class="form-group">

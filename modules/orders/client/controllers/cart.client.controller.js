@@ -16,7 +16,10 @@
         address: null,
         name: null,
         phone: null,
-        time: null
+        time: {
+          date: null,
+          time: null
+        }
       },
       status: 'PreOrder',
       totalPrice: 0
@@ -69,18 +72,11 @@
       console.log(order);
       // Redirect after save
       order.$save(function (response) {
-        $location.path('orders/deliver-inform' + response._id);
+        $location.path('orders/deliver-inform/' + response.id);
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });
 
     };
-    // Cart controller logic
-    // ...
-
-    init();
-
-    function init() {
-    }
   }
 })();
