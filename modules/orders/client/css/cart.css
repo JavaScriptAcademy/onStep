@@ -17,3 +17,7 @@ img.cart-dish-image, a.cart-dish-image{
   background-size: cover;
   display: inline-block;
 }
+
+.pay-method-icon{
+  width: 10%;
+}
