@@ -69,7 +69,7 @@
       console.log(order);
       // Redirect after save
       order.$save(function (response) {
-        $location.path('orders/deliver-inform' + response._id);
+        $location.path('/deliver-info' + response._id);
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });

@@ -28,6 +28,7 @@ exports.create = function(req, res) {
   console.log(order);
   order.save(function(err) {
     if (err) {
+      console.log(err);
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
@@ -55,7 +56,7 @@ exports.read = function(req, res) {
  * Update a Order
  */
 exports.update = function(req, res) {
-  var order = req.order ;
+  var order = req.order;
 
   order = _.extend(order , req.body);
 
