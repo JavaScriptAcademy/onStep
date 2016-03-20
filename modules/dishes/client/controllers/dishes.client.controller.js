@@ -17,6 +17,22 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+    vm.addIngredient = addIngredient;
+
+    function addIngredient(){
+      vm.dish.ingredients = vm.dish.ingredients || [];
+      vm.dish.ingredients.push({
+        name:vm.dish.ingredient.name,
+        price:vm.dish.ingredient.price,
+        count:vm.dish.ingredient.count,
+        weight:vm.dish.ingredient.weight
+      });
+
+      vm.dish.ingredient.name = '';
+      vm.dish.ingredient.price = '';
+      vm.dish.ingredient.count = '';
+      vm.dish.ingredient.weight = '';
+    }
 
     // Remove existing Dish
     function remove() {
