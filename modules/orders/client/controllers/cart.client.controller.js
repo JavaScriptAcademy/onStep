@@ -69,10 +69,10 @@
         status: 'Ordered',
         totalPrice: $scope.order.totalPrice
       });
-      console.log(order);
+
       // Redirect after save
       order.$save(function (response) {
-        $location.path('orders/deliver-inform/' + response.id);
+        $location.path('/deliver-info/' + response.orderId);
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });

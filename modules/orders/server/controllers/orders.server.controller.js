@@ -25,7 +25,6 @@ exports.create = function(req, res) {
   order.deliverInfo = req.body.deliverInfo;
   order.totalPrice = req.body.totalPrice;
   order.status = 'PreOrder';
-  console.log(order);
   order.save(function(err) {
     if (err) {
       console.log(err);
@@ -33,7 +32,7 @@ exports.create = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(order._id);
+      res.jsonp({orderId: order._id});
     }
   });
 };

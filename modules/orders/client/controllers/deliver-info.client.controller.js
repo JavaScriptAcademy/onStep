@@ -5,9 +5,10 @@
     .module('orders')
     .controller('DeliverInfoController', DeliverInfoController);
 
-  DeliverInfoController.$inject = ['$scope','OrdersService','$location'];
+  DeliverInfoController.$inject = ['$scope','OrdersService','$location','$routeParams', '$route'];
 
-  function DeliverInfoController($scope, OrdersService, $location) {
+  function DeliverInfoController($scope, OrdersService, $location, $routeParams, $route) {
+    console.log($routeParams.orderId);
     var vm = this;
     $scope.deliverInfo = {
       address: null,
@@ -41,7 +42,7 @@
       var order = OrdersService.get({ orderId:'56ee2f25d90a31b021022fc9' }, function() {
         order.deliverInfo = $scope.deliverInfo;
         order.status = 'Paying';
-
+        console.log($location.url());
         //Redict after save
         OrdersService.update({ id:'56ee2f25d90a31b021022fc9' }, order)
           .$promise.then(function(response){
