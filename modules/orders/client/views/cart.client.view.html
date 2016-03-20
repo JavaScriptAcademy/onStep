@@ -1,41 +1,48 @@
-<section>
+<section ng-controller="CartController" ng-init='getInitOrder()'>
+<h3>Shopping Cart</h3>
 <div class="container cart">
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-      <div class="row cart-margin-top">
-        <div class="col-md-8">
-          <b>Total: </b>
-        </div>
-        <div class="col-md-2 col-md-offset-2 cart-checkout">
-          <button >Check Out</button>
-        </div>
+  <form class="form-horizontal" ng-submit="create()">
+    <div class="form-group">
+      <div class="col-sm-2 col-md-2 col-md-offset-8 text-center">
+        <label>Toal: ${{order.totalPrice}}</label>
       </div>
-
-      <div class="row cart-margin-top">
-        <ul class="col-md-12 list-unstyled">
-          <li class="row">
-            <div class="col-md-8">DishName</div>
-              <div class="col-md-2 col-md-offset-2">
-                <div class="row">
-                <button class="col-md-2">-</button>
-                <input type="text" class="col-md-3 btn btn-default" value=1>
-                <button class="col-md-2">+</button>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <div class="row cart-margin-top">
-        <div class="col-md-8">
-          <b>Total: </b>
-        </div>
-        <div class="col-md-2 col-md-offset-2 cart-checkout">
-          <button >Check Out</button>
-        </div>
+      <div class="col-sm-2 col-md-2">
+        <button type="submit" class="btn btn-success">Checkout</button>
       </div>
     </div>
-  </div>
-
-
+    <ul class="list-unstyled form-group" ng-repeat="dish in order.dishes">
+      <li id="{{dish.id}}" class="form-group cart-dish-list cart-li-margin-top" >
+          <div class="cart-dish-image col-sm-2 col-md-2">
+            <a class="cart-dish-image img-thumbnail" href="">
+              <img class="cart-dish-image"src="http://i3.s2.dpfile.com/pc/a54015f85843d373b9f4ba445a181893%28700x700%29/thumb.jpg">
+            </a>
+          </div>
+          <div class="cart-dish-name col-sm-2 col-md-2">
+            <a href="">{{dish.name}}</a>
+          </div>
+          <div class="col-sm-2 col-md-2 text-center">
+            <div>{{dish.unitPrice}}</div>
+          </div>
+          <div class="col-sm-2 col-md-2 text-center">
+            <div class="input-group row">
+              <button type="button" class="col-sm-1 col-md-2  text-center" ng-click="decreaseQuantity(dish)">-</button>
+              <input type='text' class="col-sm-8 col-md-3 text-center" value={{dish.quantity}}></input>
+              <button type="button" class="col-sm-1 col-md-2 text-center" ng-click="increaseQuantity(dish)">+</button>
+            </div>
+          </div>
+          <div class="col-sm-2 col-md-2 text-center">
+            <div>{{dish.sumPrice}}</div>
+          </div>
+      </li>
+    </ul>
+    <div class="form-group">
+      <div class="col-sm-2 col-md-2 col-md-offset-8 text-center">
+        <label>Toal: ${{order.totalPrice}}</label>
+      </div>
+      <div class="col-sm-2 col-md-2">
+        <button type="submit" class="btn btn-success">Checkout</button>
+      </div>
+    </div>
+  </form>
+</div>
 </section>

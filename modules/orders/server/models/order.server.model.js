@@ -16,16 +16,19 @@ var OrderSchema = new Schema({
   },
   dishes:[
     {
-      type:Schema.ObjectId,
-      ref: 'Dish'
+      id : { type:Schema.ObjectId, ref: 'Dish' },
+      quantity: Number,
+      sumPrice: String
     }
   ],
   deliverInfo:{
-    address:String,
+    address: String,
     name: String,
     phone: String,
     time: String
-  }
+  },
+  totalPrice: String,
+  status: { type: String, enum:['PreOrder', 'Ordered', 'Paying', 'Paid'] }
 });
 
 mongoose.model('Order', OrderSchema);
