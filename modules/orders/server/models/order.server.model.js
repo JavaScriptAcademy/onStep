@@ -28,7 +28,10 @@ var OrderSchema = new Schema({
     address: String,
     name: String,
     phone: String,
-    time: String
+    time: {
+      date: String,
+      time: String
+    }
   },
   totalPrice: String,
   status: {
