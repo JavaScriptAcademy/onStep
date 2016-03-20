@@ -11,6 +11,9 @@
     <a class="btn btn-primary" data-ng-click="vm.remove()">
       <i class="glyphicon glyphicon-trash"></i>
     </a>
+    <a class="btn btn-primary" data-ng-click="vm.createLocalOrder()">
+      <i class="glyphicon glyphicon-shopping-cart"></i>
+    </a>
   </div>
   <small>
     <em class="text-muted">
@@ -18,7 +21,7 @@
       <span data-ng-bind="vm.dish.created | date:'mediumDate'"></span>
       by
       <span data-ng-if="vm.dish.user"
-            data-ng-bind="vm.dish.user.displayName"></span>
+            data-ng-bind="vm.dish.user.username"></span>
       <span data-ng-if="!vm.dish.user">Deleted User</span>
     </em>
   </small>
