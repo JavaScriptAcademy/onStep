@@ -91,6 +91,18 @@ exports.list = function(req, res) {
   });
 };
 
+exports.getRandom = function(req, res) {
+  Dish.find().exec(function(err, dishes) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      dishes = dishes.slice(0,3)
+      res.jsonp(dishes);
+    }
+  });
+};
 /**
  * Dish middleware
  */

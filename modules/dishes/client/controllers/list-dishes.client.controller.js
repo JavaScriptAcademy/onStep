@@ -5,12 +5,13 @@
     .module('dishes')
     .controller('DishesListController', DishesListController);
 
-  DishesListController.$inject = ['DishesService'];
+  DishesListController.$inject = ['DishesService','RandomService'];
 
-  function DishesListController(DishesService) {
+  function DishesListController(DishesService,RandomService) {
     var vm = this;
     vm.dishes = DishesService.query();
-    console.log(vm.dishes)
+    vm.ramdomDishes = RandomService.query();
+
 
   }
 })();
