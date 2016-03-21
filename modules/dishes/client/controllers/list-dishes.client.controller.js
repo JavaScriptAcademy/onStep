@@ -16,12 +16,24 @@
     vm.dishes = DishesService.query();
 
 
-    function createLocalOrder(){
-      console.log("hello");
-      let order = dishService.getData();
-      vm.orders.push(vm.dish);
+    function createLocalOrder(id) {
+      return DishesService.get({
+        dishId: id
+      }).$promise
+      .then(successCallback,errorCallback);
+    }
+
+    function successCallback(dish){
+      console.log('success',dish);
+      var order = dishService.getData();
+      vm.orders.push(dish);
       console.log(vm.orders);
       vm.dishService.setData(vm.orders);
+
     }
+    function errorCallback(err, status){
+      console.log('error', err);
+    }
+
   }
 })();
