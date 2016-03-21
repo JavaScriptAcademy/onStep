@@ -15,7 +15,7 @@ var path = require('path'),
 exports.create = function(req, res) {
   var dish = new Dish(req.body);
   dish.user = req.user;
-
+  console.log(dish.user,req.user);
   dish.save(function(err) {
     if (err) {
       return res.status(400).send({
@@ -80,7 +80,7 @@ exports.delete = function(req, res) {
 /**
  * List of Dishes
  */
-exports.list = function(req, res) { 
+exports.list = function(req, res) {
   Dish.find().sort('-created').populate('user', 'displayName').exec(function(err, dishes) {
     if (err) {
       return res.status(400).send({

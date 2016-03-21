@@ -3,19 +3,39 @@
     <h1>Orders</h1>
   </div>
   <div class="list-group">
-    <a data-ng-repeat="order in vm.orders"
-       data-ui-sref="orders.view({ orderId: order._id })"
+    <div data-ng-repeat="order in vm.orders"
        class="list-group-item">
       <small class="list-group-item-text">
-        Posted on
+       <!--  Posted on
         <span data-ng-bind="order.created | date:'mediumDate'"></span>
         by
         <span data-ng-if="order.user" data-ng-bind="order.user.displayName"></span>
-        <span data-ng-if="!order.user">Deleted User</span>
+        <span data-ng-if="!order.user">Deleted User</span> -->
+        <span><b>Status: </b>{{order.status}}</span>
+        <br>
+        <span><b>ToalPrice: </b>{{order.totalPrice}}<b> RMB</b></span>
+        <br>
+        <span><b>Name: </b>{{order.deliverInfo.name}}</span>
+        <br>
+        <span><b>Address: </b>{{order.deliverInfo.address}}</span>
+        <div >
+          <ul class="procedures">
+            <li data-ng-repeat="dish in order.dishes">
+                <h4><div ng-click="show = !show">{{dish.sumPrice}}</div></h4>
+                 <div class="procedure-details" ng-show="show">
+                    <p>Number of patient discharges:</p>
+                    <p>Average amount covered by Medicare: </p>
+                    <p>Average total payments: </p>
+                 </div>
+            </li>
+          </ul>
+        </div>
+
       </small>
       <h4 class="list-group-item-heading" data-ng-bind="order.name"></h4>
-    </a>
+    </div>
   </div>
+
   <div class="alert alert-warning text-center" data-ng-if="vm.orders.$resolved && !vm.orders.length">
     No Orders yet, why don't you <a data-ui-sref="orders.create">create one</a>?
   </div>

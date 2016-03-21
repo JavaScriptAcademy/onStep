@@ -16,15 +16,27 @@ var OrderSchema = new Schema({
   },
   dishes:[
     {
-      type:Schema.ObjectId,
-      ref: 'Dish'
+      id: {
+        type:Schema.ObjectId,
+        ref: 'Dish'
+      },
+      quantity: String,
+      sumPrice: String
     }
   ],
   deliverInfo:{
-    address:String,
+    address: String,
     name: String,
     phone: String,
-    time: String
+    time: {
+      date: String,
+      time: String
+    }
+  },
+  totalPrice: String,
+  status: {
+    type: String,
+    enum: ['PreOrder', 'Ordered', 'Paying', 'Paid']
   }
 });
 

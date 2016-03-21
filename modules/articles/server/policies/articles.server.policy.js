@@ -9,47 +9,47 @@ var acl = require('acl');
 acl = new acl(new acl.memoryBackend());
 
 /**
- * Invoke Orders Permissions
+ * Invoke Articles Permissions
  */
 exports.invokeRolesPolicies = function () {
   acl.allow([{
     roles: ['admin'],
     allows: [{
-      resources: '/api/orders',
+      resources: '/api/articles',
       permissions: '*'
     }, {
-      resources: '/api/orders/:orderId',
+      resources: '/api/articles/:articleId',
       permissions: '*'
     }]
   }, {
     roles: ['user'],
     allows: [{
-      resources: '/api/orders',
+      resources: '/api/articles',
       permissions: ['get', 'post']
     }, {
-      resources: '/api/orders/:orderId',
+      resources: '/api/articles/:articleId',
       permissions: ['get']
     }]
   }, {
     roles: ['guest'],
     allows: [{
-      resources: '/api/orders',
+      resources: '/api/articles',
       permissions: ['get']
     }, {
-      resources: '/api/orders/:orderId',
+      resources: '/api/articles/:articleId',
       permissions: ['get']
     }]
   }]);
 };
 
 /**
- * Check If Orders Policy Allows
+ * Check If Articles Policy Allows
  */
 exports.isAllowed = function (req, res, next) {
   var roles = (req.user) ? req.user.roles : ['guest'];
 
-  // If an Order is being processed and the current user created it then allow any manipulation
-  if (req.order && req.user && req.order._creator && String(req.order._creator) === String(req.user._id)) {
+  // If an Article is being processed and the current user created it then allow any manipulation
+  if (req.article && req.user && req.article.user && req.article.user.id === req.user.id) {
     return next();
   }
 

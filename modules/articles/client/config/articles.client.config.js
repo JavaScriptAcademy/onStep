@@ -2,29 +2,30 @@
   'use strict';
 
   angular
-    .module('orders')
+    .module('articles')
     .run(menuConfig);
+
   menuConfig.$inject = ['Menus'];
 
   function menuConfig(Menus) {
     // Set top bar menu items
     Menus.addMenuItem('topbar', {
-      title: 'Orders',
-      state: 'orders',
+      title: 'Articles',
+      state: 'articles',
       type: 'dropdown',
       roles: ['*']
     });
 
     // Add the dropdown list item
-    Menus.addSubMenuItem('topbar', 'orders', {
-      title: 'List Orders',
-      state: 'orders.list'
+    Menus.addSubMenuItem('topbar', 'articles', {
+      title: 'List Articles',
+      state: 'articles.list'
     });
 
     // Add the dropdown create item
-    Menus.addSubMenuItem('topbar', 'orders', {
-      title: 'Create Order',
-      state: 'orders.create',
+    Menus.addSubMenuItem('topbar', 'articles', {
+      title: 'Create Article',
+      state: 'articles.create',
       roles: ['user']
     });
   }

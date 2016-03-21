@@ -5,123 +5,113 @@
  */
 var path = require('path'),
   mongoose = require('mongoose'),
-  Order = mongoose.model('Order'),
+  Article = mongoose.model('Article'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
 /**
- * Create a Order
+ * Create a Article
  */
 exports.create = function(req, res) {
-  var order = new Order();
-  order._creator = req.user._id;
-  for(var i = 0; i < req.body.dishes.length; i++){
-    order.dishes.push({
-      id: req.body.dishes[i]._id,
-      quantity: req.body.dishes[i].quantity,
-      sumPrice: req.body.dishes[i].sumPrice
-    });
-  }
-  order.deliverInfo = req.body.deliverInfo;
-  order.totalPrice = req.body.totalPrice;
-  order.status = 'PreOrder';
-  order.save(function(err) {
+  var article = new Article(req.body);
+  article.user = req.user;
+  console.log(111);
+  article.save(function(err) {
     if (err) {
-      console.log(err);
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp({ orderId: order._id });
+      res.jsonp(article);
     }
   });
 };
 
 /**
- * Show the current Order
+ * Show the current Article
  */
 exports.read = function(req, res) {
   // convert mongoose document to JSON
-  var order = req.order ? req.order.toJSON() : {};
+  var article = req.article ? req.article.toJSON() : {};
 
   // Add a custom field to the Article, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
-  order.isCurrentUserOwner = req.user && order.user && order.user._id.toString() === req.user._id.toString() ? true : false;
+  article.isCurrentUserOwner = req.user && article.user && article.user._id.toString() === req.user._id.toString() ? true : false;
 
-  res.jsonp(order);
+  res.jsonp(article);
 };
 
 /**
- * Update a Order
+ * Update a Article
  */
 exports.update = function(req, res) {
-  console.log('HI');
-  var order = req.order;
-  order = _.extend(order , req.body);
+  var article = req.article ;
 
-  order.save(function(err) {
+  article = _.extend(article , req.body);
+
+  article.save(function(err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(order);
+      res.jsonp(article);
     }
   });
 };
 
 /**
- * Delete an Order
+ * Delete an Article
  */
 exports.delete = function(req, res) {
-  var order = req.order ;
+  var article = req.article ;
 
-  order.remove(function(err) {
+  article.remove(function(err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(order);
+      res.jsonp(article);
     }
   });
 };
 
 /**
- * List of Orders
+ * List of Articles
  */
 exports.list = function(req, res) {
-  Order.find().sort('-created').populate('user', 'displayName').exec(function(err, orders) {
+  Article.find().sort('-created').populate('user', 'displayName').exec(function(err, articles) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(orders);
+      res.jsonp(articles);
     }
   });
 };
 
 /**
- * Order middleware
+ * Article middleware
  */
-exports.orderByID = function(req, res, next, id) {
+exports.articleByID = function(req, res, next, id) {
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
-      message: 'Order is invalid'
+      message: 'Article is invalid'
     });
   }
 
-  Order.findById(id).populate('user', 'username').exec(function (err, order) {
+  Article.findById(id).populate('user', 'displayName').exec(function (err, article) {
     if (err) {
       return next(err);
-    } else if (!order) {
+    } else if (!article) {
       return res.status(404).send({
-        message: 'No Order with that identifier has been found'
+        message: 'No Article with that identifier has been found'
       });
     }
-    req.order = order;
+    req.article = article;
     next();
   });
 };
