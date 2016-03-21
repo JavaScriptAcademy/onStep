@@ -1,32 +1,37 @@
 <section ng-controller="DeliverInfoController" ng-init='getUserDeliverInfo()'>
-  <form class="form-horizontal" ng-submit="updateOrder()">
-    <div class="form-group">
+  <form class="form-horizontal" name="orderForm" ng-submit="updateOrder()" >
+
+    <div class="form-group" ng-class="{ 'has-error' : orderForm.address.$invalid && !orderForm.address.$pristine }">
       <label class="col-sm-2 col-md-2 control-label">Address</label>
       <div class="col-sm-10 col-md-10">
-        <input type="text" list="deliverInfoDatalistAddress" class="form-control" placeholder="Your address" ng-model="deliverInfo.address">
+        <input type="text" list="deliverInfoDatalistAddress" name="address" class="form-control" placeholder="Your address" ng-model="deliverInfo.address" required>
         <datalist id="deliverInfoDatalistAddress">
           <option value="{{address}}" ng-repeat="address in deliverInfos.addresses">
         </datalist>
       </div>
     </div>
-    <div class="form-group">
+
+    <div class="form-group" ng-class="{ 'has-error' : orderForm.name.$invalid && !orderForm.name.$pristine }">
       <label class="col-sm-2 col-md-2 control-label">Name</label>
       <div class="col-sm-10">
-        <input type="text" list="deliverInfoDatalistName" class="form-control" placeholder="Your Name" ng-model="deliverInfo.name">
+        <input type="text" list="deliverInfoDatalistName" name="name" class="form-control" placeholder="Your Name" ng-model="deliverInfo.name" required>
         <datalist id="deliverInfoDatalistName">
           <option value="{{name}}" ng-repeat="name in deliverInfos.names">
         </datalist>
+        <p ng-show="orderForm.name.$invalid && !orderForm.name.$pristine" class="help-block">You name is required.</p>
       </div>
-    </div>
-    <div class="form-group">
+     </div>
+
+    <div class="form-group" ng-class="{ 'has-error' : orderForm.phone.$invalid && !orderForm.phone.$pristine }">
       <label class="col-sm-2 col-md-2 control-label">Phone Number</label>
       <div class="col-sm-10 col-md-10">
-        <input type="text" list="deliverInfoDatalistPhoneNumber" class="form-control" placeholder="Phone Number" ng-model="deliverInfo.phone">
+        <input type="text" list="deliverInfoDatalistPhoneNumber" name="phone" class="form-control" placeholder="Phone Number" ng-model="deliverInfo.phone" required>
         <datalist id="deliverInfoDatalistPhoneNumber">
           <option value="{{phone}}" ng-repeat="phone in deliverInfos.phones">
         </datalist>
       </div>
     </div>
+
     <div class="form-group">
       <label class="col-sm-2 col-md-2 control-label">Expect Delivery Time</label>
       <div class="col-sm-5 col-md-5">
