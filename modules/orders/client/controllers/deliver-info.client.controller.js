@@ -22,9 +22,9 @@
 
     $scope.getUserDeliverInfo = function(){
       var deliverInformation = {
-        addresses: ["Chongwenhuayuan Unit 10, Room 2003, Nanshan district, Shenzhen City", "Nanshan District, Hitech park, Shenzhen"],
-        names: ["Claire", "Wenjing", "Miss Liu"],
-        phones: ["12345678911", "122334467788"],
+        addresses: ['Chongwenhuayuan Unit 10, Room 2003, Nanshan district, Shenzhen City", "Nanshan District, Hitech park, Shenzhen'],
+        names: ['Claire', 'Wenjing', 'Miss Liu'],
+        phones: ['12345678911', '122334467788'],
       };
       $scope.deliverInfos = {
         addresses: deliverInformation.addresses,

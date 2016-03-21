@@ -32,7 +32,7 @@ exports.create = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp({orderId: order._id});
+      res.jsonp({ orderId: order._id });
     }
   });
 };
