@@ -86,7 +86,7 @@ describe('Dish CRUD tests', function () {
                 }
 
                 // Get Dishes list
-                var dishes = dishesGetRes.body;
+                var dishes = dishsGetRes.body;
 
                 // Set assertions
                 (dishes[0].user._id).should.equal(userId);

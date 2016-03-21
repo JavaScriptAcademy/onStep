@@ -9,7 +9,8 @@
 
   function DishesListController(DishesService) {
     var vm = this;
-
     vm.dishes = DishesService.query();
+    console.log(vm.dishes)
+
   }
 })();
