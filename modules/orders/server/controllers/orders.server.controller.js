@@ -9,11 +9,71 @@ var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
+
 /**
  * Create a Order
  */
 exports.create = function(req, res) {
-  var order = new Order();
+  console.log('Creat order');
+  Order.findOne({status: 'PreOrder'},{}, function(error, order){
+    if(order === null){
+      console.log("no PreOrder");
+      order = new Order();
+      order._creator = req.user._id;
+      for(var i = 0; i < req.body.dishes.length; i++){
+        order.dishes.push({
+          id: req.body.dishes[i].id,
+          quantity: req.body.dishes[i].quantity,
+          sumPrice: req.body.dishes[i].sumPrice
+        });
+      }
+      order.deliverInfo = req.body.deliverInfo;
+      order.totalPrice = req.body.totalPrice;
+      order.status = 'PreOrder';
+      order.save(function(err) {
+        if(err){
+          return res.status(400).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        }else{
+          res.jsonp({ orderId: order._id });
+        }
+      });
+    }else{
+      var existing = false;
+      for(var i = 0; i < req.body.dishes.length; i++){
+        existing = false;
+        for(var j = 0; j < order.dishes.length; j++){
+          if(String(req.body.dishes[i].id) === String(order.dishes[j].id)){
+            order.dishes[j].quantity++;
+            existing = true;
+            break;
+          }
+        }
+        if(existing === false){
+          for(var i = 0; i < req.body.dishes.length; i++){
+            order.dishes.push({
+              id: req.body.dishes[i]._id,
+              quantity: req.body.dishes[i].quantity,
+              sumPrice: req.body.dishes[i].sumPrice
+            });
+          }
+        }
+      }
+       order.save(function(err) {
+        if(err){
+          return res.status(400).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        }else{
+          res.jsonp({ orderId: order._id });
+        }
+      });
+    }
+  });
+
+
+/*  var order = new Order();
   order._creator = req.user._id;
   for(var i = 0; i < req.body.dishes.length; i++){
     order.dishes.push({
@@ -34,7 +94,7 @@ exports.create = function(req, res) {
     } else {
       res.jsonp({ orderId: order._id });
     }
-  });
+  });*/
 };
 
 /**
