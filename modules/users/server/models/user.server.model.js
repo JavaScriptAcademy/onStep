@@ -28,10 +28,6 @@ var validateLocalStrategyEmail = function (email) {
  * User Schema
  */
 var UserSchema = new Schema({
-  displayName: {
-    type: String,
-    trim: true
-  },
   email: {
     type: String,
     unique: true,
@@ -42,7 +38,6 @@ var UserSchema = new Schema({
   },
   username: {
     type: String,
-    unique: 'Username already exists',
     required: 'Please fill in a username',
     lowercase: true,
     trim: true

@@ -19,6 +19,7 @@ var DishSchema = new Schema({
   dishImage   : String,
   ingredients : [{ ingredientId: Number, name: String, price: Number, count: Number, weight: String }],
   cookingSteps: [String],
+  price: Number,
   order : {
     type:Schema.ObjectId,
     ref: 'Order'

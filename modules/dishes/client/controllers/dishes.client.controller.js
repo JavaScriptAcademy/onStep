@@ -6,9 +6,9 @@
     .module('dishes')
     .controller('DishesController', DishesController);
 
-  DishesController.$inject = ['$scope', '$state', 'Authentication', 'dishResolve'];
+  DishesController.$inject = ['$scope', '$state', 'Authentication', 'dishService', 'dishResolve'];
 
-  function DishesController ($scope, $state, Authentication, dish) {
+  function DishesController ($scope, $state, Authentication, dishService, dish) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -18,6 +18,9 @@
     vm.remove = remove;
     vm.save = save;
     vm.addIngredient = addIngredient;
+    vm.orders = [];
+    vm.dishService = dishService;
+    vm.createLocalOrder = createLocalOrder;
 
     function addIngredient(){
       vm.dish.ingredients = vm.dish.ingredients || [];
@@ -34,8 +37,17 @@
       vm.dish.ingredient.weight = '';
     }
 
+    function createLocalOrder(){
+      console.log("hello");
+      let order = dishService.getData();
+      vm.orders.push(vm.dish);
+      console.log(vm.orders);
+      vm.dishService.setData(vm.orders);
+    }
+
     // Remove existing Dish
     function remove() {
+      console.log(11);
       if (confirm('Are you sure you want to delete?')) {
         vm.dish.$remove($state.go('dishes.list'));
       }
