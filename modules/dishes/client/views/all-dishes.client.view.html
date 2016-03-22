@@ -2,27 +2,27 @@
   <div class="page-header">
     <h1>All dishes</h1>
   </div>
-<!--   <div class="list-group">
-    <a data-ng-repeat="dish in vm.dishes"
-       data-ui-sref="dishes.view({ dishId: dish._id })"
-       class="list-group-item">
-      <h4 class="list-group-item-heading" data-ng-bind="dish.name"></h4>
-    </a>
-  </div> -->
   <div class="row">
     <div class="col-md-12 thumbnail" data-ng-repeat="dish in vm.dishes">
-      <img data-ui-sref="dishes.view({ dishId: dish._id })" ng-src="{{dish.dishImage}}" alt="{{dish.name}}" />
-       <h3>{{dish.name}}</h3>
-          <small class="list-group-item-text pull-right">
-            Price:
-            <span data-ng-bind="dish.price | currency:'￥'"></span>
-          </small>
-          <p class="homeOrder">
-            <a class="btn btn-primary"
-            data-ng-click="vm.createLocalOrder(dish._id)">
+
+      <div class="thumbnailLeft col-md-3">
+        <img data-ui-sref="dishes.view({ dishId: dish._id })" ng-src="{{dish.dishImage}}" alt="{{dish.name}}" />
+      </div>
+      <div class="thumbnailMid col-md-6">
+        <h3 data-ui-sref="dishes.view({ dishId: dish._id })">{{dish.name}}</h3>
+        <p class="text-muted">
+          Price:
+          <span data-ng-bind="dish.price | currency"></span>
+        </p>
+      </div>
+      <div class="thumbnailRight col-md-3">
+        <p>
+          <a class="btn btn-primary"
+             data-ng-click="vm.createLocalOrder(dish._id)">
             <i class="glyphicon glyphicon-shopping-cart"></i>
           </a>
         </p>
+      </div>
     </div>
   </div>
   <div class="alert alert-warning text-center" data-ng-if="vm.dishes.$resolved && !vm.dishes.length">

@@ -14,7 +14,6 @@ var path = require('path'),
  * Create a Order, this is used for
  * create an order from the order button of detail page
  */
-
 exports.create = function(req, res){
   // var dishId = req.body.dishes.id;
   var dishId = req.body.dishId;
