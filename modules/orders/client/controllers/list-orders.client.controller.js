@@ -11,8 +11,6 @@
     var vm = this;
 
     vm.orders = OrdersService.query();
-    vm.authentication = Authentication;
-    console.log(vm.authentication.user._id);
 
   }
 })();
