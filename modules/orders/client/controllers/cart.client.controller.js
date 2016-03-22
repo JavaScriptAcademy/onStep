@@ -65,7 +65,7 @@
     $scope.create = function(){
       var order = new OrdersService({
         _creator: null,
-        dishes: {id: '56eeb20656e94da41339984e'},
+        dishes: { id: '56eeb20656e94da41339984e' },
         deliverInfo: $scope.order.deliverInfo,
         status: 'Ordered',
         totalPrice: $scope.order.totalPrice

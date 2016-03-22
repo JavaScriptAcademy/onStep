@@ -15,14 +15,14 @@ var path = require('path'),
  * create an order from the order button of detail page
  */
 exports.create = function(req, res){
-  dishId = req.body.dishes.id;
-  console.log(">>>>>" + req.dishId);
-  Order.findOne({status: 'PreOrder'},{}, function(error, order){
+  // var dishId = req.body.dishes.id;
+  var dishId = req.body.dishId;
+  Order.findOne({ status: 'PreOrder' },{ }, function(error, order){
     if(order === null){
-      Dish.findOne({_id: dishId}, {}, function(error, dish){
+      Dish.findOne({ _id: dishId }, { }, function(error, dish){
         if(dish === null){
           return res.status(400).send({
-              message: errorHandler.getErrorMessage(err)
+            message: errorHandler.getErrorMessage('dish is not found')
           });
         }
         order = new Order();
@@ -38,19 +38,19 @@ exports.create = function(req, res){
           if(err){
             return res.status(400).send({
               message: errorHandler.getErrorMessage(err)
-          });
+            });
           }else{
-          res.jsonp({ orderId: order._id });
+            res.jsonp({ orderId: order._id });
           }
         });
       });
 
     }else{
-      Dish.findOne({_id: dishId}, {}, function(error, dish){
+      Dish.findOne({ _id: dishId }, { }, function(error, dish){
         if(dish === null){
           return res.status(400).send({
-              message: errorHandler.getErrorMessage(err)
-            });
+            message: errorHandler.getErrorMessage('dish is not found')
+          });
         }
         var existing = false;
         _.each(order.dishes, function(dishItem){
@@ -79,66 +79,6 @@ exports.create = function(req, res){
     }
   });
 };
-
-/**
- * Create a Order, this is used for create an order from the cart-page
- */
-/*exports.create = function(req, res) {
-  Order.findOne({status: 'PreOrder'},{}, function(error, order){
-    if(order === null){
-      order = new Order();
-      order._creator = req.user._id;
-      for(var i = 0; i < req.body.dishes.length; i++){
-        order.dishes.push({
-          _dish: mongoose.Types.ObjectId(req.body.dishes[i]._id),
-          quantity: Number(req.body.dishes[i].quantity)
-        });
-      }
-      order.deliverInfo = req.body.deliverInfo;
-      order.totalPrice = req.body.totalPrice;
-      order.status = 'PreOrder';
-      order.save(function(err) {
-        if(err){
-          return res.status(400).send({
-            message: errorHandler.getErrorMessage(err)
-          });
-        }else{
-          res.jsonp({ orderId: order._id });
-        }
-      });
-    }else{
-      // console.log(order.dishes);
-      var existing = false;
-      for(var i = 0; i < req.body.dishes.length; i++){
-        existing = false;
-        for(var j = 0; j < order.dishes.length; j++){
-          if(String(req.body.dishes[i]._id) === String(order.dishes[j]._dish)){
-            order.dishes[j].quantity++;
-            existing = true;
-            break;
-          }
-        }
-        if(existing === false){
-          for(var i = 0; i < req.body.dishes.length; i++){
-            order.dishes.push({
-              _dish: mongoose.Types.ObjectId(req.body.dishes[i]._id),
-              quantity: Number(req.body.dishes[i].quantity),
-            });
-          }
-        }
-      }
-       order.save(function(err) {
-        if(err){
-          return res.status(400).send({
-            message: errorHandler.getErrorMessage(err)
-          });
-        }else{
-          res.jsonp({ orderId: order._id });
-        }
-      });
-    }
-  });
-};*/
 
 /**
  * Show the current Order
