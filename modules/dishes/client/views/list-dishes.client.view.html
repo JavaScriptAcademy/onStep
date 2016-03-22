@@ -34,7 +34,7 @@
     <h1>Dishes</h1>
   </div>
   <div class="row">
-    <div data-ng-repeat="dish in vm.dishes" class="col-sm-6 col-md-4">
+    <div data-ng-repeat="dish in vm.ramdomDishes" class="col-sm-6 col-md-4">
       <div class="thumbnail" >
       <img data-ui-sref="dishes.view({ dishId: dish._id })" src="{{dish.dishImage}}" alt="{{dish.name}}">
         <div class="caption">
