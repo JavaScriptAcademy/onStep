@@ -9,7 +9,8 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div ng-repeat="dish in vm.dishes" ng-class='$index===0?"active item":"item"'>
-        <img ng-src="{{dish.dishImage}}" alt="...">
+
+        <div class="carouselImage" style="background-image:url( {{dish.dishImage}} )"></div>
         <div class="carousel-caption">
           <!-- description of images -->
           {{dish.name}}
@@ -33,7 +34,7 @@
   <h1>Today's suggestion</h1>
   </div>
   <div class="row">
-    <div data-ng-repeat="dish in vm.dishes" class="col-sm-6 col-md-4">
+    <div data-ng-repeat="dish in vm.ramdomDishes" class="col-sm-6 col-md-4">
       <div class="thumbnail" >
         <div class="thumbail-image">
           <img data-ui-sref="dishes.view({ dishId: dish._id })" src="{{dish.dishImage}}" alt="{{dish.name}}">
@@ -42,7 +43,7 @@
           <h3>{{dish.name}}</h3>
           <small class="list-group-item-text pull-right">
             Price:
-            <span data-ng-bind="dish.price | currency"></span>
+            <span data-ng-bind="dish.price | currency:'￥'"></span>
           </small>
           <p class="homeOrder">
             <a class="btn btn-primary"

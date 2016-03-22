@@ -93,13 +93,24 @@ exports.list = function(req, res) {
 };
 
 exports.getRandom = function(req, res) {
+  function shuffle(a) {
+      var j, x, i;
+      for (i = a.length; i; i -= 1) {
+          j = Math.floor(Math.random() * i);
+          x = a[i - 1];
+          a[i - 1] = a[j];
+          a[j] = x;
+      }
+      return a;
+  }
   Dish.find().exec(function(err, dishes) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      dishes = dishes.slice(0,3);
+      dishes = shuffle(dishes);
+      dishes = dishes.slice(3);
       res.jsonp(dishes);
     }
   });

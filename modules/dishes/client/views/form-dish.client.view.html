@@ -14,7 +14,7 @@
         </div>
 
         <div class="form-group" show-errors>
-          <label class="control-label" for="name">Price</label>
+          <label class="control-label" for="name">Price(￥)</label>
           <input name="price" type="text" ng-model="vm.dish.price" id="price" class="form-control" placeholder="Price" required>
           <div ng-messages="vm.form.dishForm.price.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Dish price is required.</p>
@@ -33,7 +33,7 @@
             <tr>
               <th></th>
               <th>Name</th>
-              <th>Weight</th>
+              <th>Weight(g)</th>
             </tr>
             <tr>
               <td><span class="btn btn-default" ng-click="vm.addIngredient()">add</span></td>
