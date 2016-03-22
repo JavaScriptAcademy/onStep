@@ -98,7 +98,7 @@ exports.getRandom = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      dishes = dishes.slice(0,3)
+      dishes = dishes.slice(0,3);
       res.jsonp(dishes);
     }
   });

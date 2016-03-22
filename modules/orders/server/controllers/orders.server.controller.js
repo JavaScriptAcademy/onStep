@@ -13,18 +13,20 @@ var path = require('path'),
  * Create a Order
  */
 exports.create = function(req, res) {
-  var order = new Order();
+  console.log(req.body);
+  var order = new Order(req.body);
   order._creator = req.user._id;
-  for(var i = 0; i < req.body.dishes.length; i++){
-    order.dishes.push({
-      id: req.body.dishes[i]._id,
-      quantity: req.body.dishes[i].quantity,
-      sumPrice: req.body.dishes[i].sumPrice
-    });
-  }
-  order.deliverInfo = req.body.deliverInfo;
-  order.totalPrice = req.body.totalPrice;
-  order.status = 'PreOrder';
+
+  // for(var i = 0; i < req.body.dishes.length; i++){
+  //   order.dishes.push({
+  //     id: req.body.dishes[i]._id,
+  //     quantity: req.body.dishes[i].quantity,
+  //     sumPrice: req.body.dishes[i].sumPrice
+  //   });
+  // }
+  // order.deliverInfo = req.body.deliverInfo;
+  // order.totalPrice = req.body.totalPrice;
+  // order.status = 'PreOrder';
   order.save(function(err) {
     if (err) {
       console.log(err);

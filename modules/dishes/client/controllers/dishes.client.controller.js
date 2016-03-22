@@ -6,9 +6,9 @@
     .module('dishes')
     .controller('DishesController', DishesController);
 
-  DishesController.$inject = ['$scope', '$state', 'Authentication', 'dishService', 'dishResolve'];
+  DishesController.$inject = ['$scope', '$state', 'Authentication', 'OrdersService', 'dishResolve'];
 
-  function DishesController ($scope, $state, Authentication, dishService, dish) {
+  function DishesController ($scope, $state, Authentication, OrdersService, dish) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -19,7 +19,6 @@
     vm.save = save;
     vm.addIngredient = addIngredient;
     vm.orders = [];
-    vm.dishService = dishService;
     vm.createLocalOrder = createLocalOrder;
 
     function addIngredient(){
@@ -37,12 +36,27 @@
       vm.dish.ingredient.weight = '';
     }
 
-    function createLocalOrder(){
-      console.log("hello");
-      let order = dishService.getData();
-      vm.orders.push(vm.dish);
-      console.log(vm.orders);
-      vm.dishService.setData(vm.orders);
+    function createLocalOrder(dishId){
+      // console.log("hello");
+      // let order = dishService.getData();
+      // vm.orders.push(vm.dish);
+      // console.log(vm.orders);
+      // vm.dishService.setData(vm.orders);
+
+      vm.order = new OrdersService();
+      vm.order.dishId = dishId;
+      vm.order.$save(successCallback, errorCallback);
+
+      function successCallback(res) {
+        $state.go('dishes.view', {
+          dishId: res._id
+        });
+      }
+
+      function errorCallback(res) {
+        vm.error = res.data.message;
+      }
+
     }
 
     // Remove existing Dish
