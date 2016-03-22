@@ -9,7 +9,8 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div ng-repeat="dish in vm.dishes" ng-class='$index===0?"active item":"item"'>
-        <img ng-src="{{dish.dishImage}}" alt="...">
+
+        <div class="carouselImage" style="background-image:url( {{dish.dishImage}} )"></div>
         <div class="carousel-caption">
           <!-- description of images -->
           {{dish.name}}

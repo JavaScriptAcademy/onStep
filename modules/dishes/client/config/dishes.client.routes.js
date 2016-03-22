@@ -9,6 +9,12 @@
 
   function routeConfig($stateProvider) {
     $stateProvider
+      .state('home', {
+        url: '/',
+        controller:'DishesListController',
+        templateUrl: 'modules/dishes/client/views/list-dishes.client.view.html',
+        controllerAs: 'vm'
+      })
       .state('dishes', {
         abstract: true,
         url: '/dishes',
