@@ -15,6 +15,7 @@ var path = require('path'),
 exports.create = function(req, res) {
   var dish = new Dish(req.body);
   dish.user = req.user;
+  console.log(req.user);
   console.log(dish.user,req.user);
   dish.save(function(err) {
     if (err) {

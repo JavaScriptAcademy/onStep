@@ -28,15 +28,16 @@
     //Get Init Order from local
     $scope.getInitOrder = function(){
       $scope.order.dishes = [{
-        id: '123456',
+        id: '56eeb20656e94da41339984e',
         name: 'toduosi',
         unitPrice: 20,
       },
       {
-        id: '123457',
+        id: '56eeb3ea56e94da413399855',
         name: 'Yurou',
         unitPrice: 50,
       }];
+
 
       angular.forEach($scope.order.dishes,function(dish, key){
         dish.quantity = 1;
@@ -64,7 +65,7 @@
     $scope.create = function(){
       var order = new OrdersService({
         _creator: null,
-        dishes: $scope.order.dishes,
+        dishes: { id: '56eeb20656e94da41339984e' },
         deliverInfo: $scope.order.deliverInfo,
         status: 'Ordered',
         totalPrice: $scope.order.totalPrice
