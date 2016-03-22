@@ -4,7 +4,6 @@
   angular
     .module('orders')
     .run(menuConfig);
-
   menuConfig.$inject = ['Menus'];
 
   function menuConfig(Menus) {
