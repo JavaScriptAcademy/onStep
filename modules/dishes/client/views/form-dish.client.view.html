@@ -10,17 +10,22 @@
           <input name="name" type="text" ng-model="vm.dish.name" id="name" class="form-control" placeholder="Name" required>
           <div ng-messages="vm.form.dishForm.name.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Dish name is required.</p>
-            <label class="control-label" for="name">dishImage</label>
-          <input name="dishImage" type="text" ng-model="vm.dish.dishImage" id="dishImage" class="form-control" placeholder="dishImage" required>
-          <label class="control-label" for="name">cookingSteps</label>
-          <input name="cookingSteps" type="text" ng-model="vm.dish.cookingSteps" id="cookingSteps" class="form-control" placeholder="cookingSteps" required>
           </div>
         </div>
+
         <div class="form-group" show-errors>
-          <label class="control-label" for="dishImage">dish image</label>
+          <label class="control-label" for="name">Price</label>
+          <input name="price" type="text" ng-model="vm.dish.price" id="price" class="form-control" placeholder="Price" required>
+          <div ng-messages="vm.form.dishForm.price.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Dish price is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="dishImage">Dish image</label>
           <input name="dishImage" type="text" ng-model="vm.dish.dishImage" id="dishImage" class="form-control" placeholder="dish image url" required>
           <div ng-messages="vm.form.dishForm.dishImage.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">dish image is required.</p>
+            <p class="help-block error-text" ng-message="required">Dish image is required.</p>
           </div>
         </div>
         <div class="table-wrapper">
@@ -28,22 +33,16 @@
             <tr>
               <th></th>
               <th>Name</th>
-              <th>Price</th>
-              <th>Count</th>
               <th>Weight</th>
             </tr>
             <tr>
               <td><span class="btn btn-default" ng-click="vm.addIngredient()">add</span></td>
               <td><input class="form-control" type="text" ng-model="vm.dish.ingredient.name"></td>
-              <td><input class="form-control" type="text" ng-model="vm.dish.ingredient.price"></td>
-              <td><input class="form-control" type="text" ng-model="vm.dish.ingredient.count"></td>
               <td><input class="form-control" type="text" ng-model="vm.dish.ingredient.weight"></td>
             </tr>
             <tr ng-repeat="ingredient in vm.dish.ingredients track by $index">
               <td><span class="btn btn-default" ng-click="vm.dish.ingredients.splice($index, 1)">remove</span></td>
               <td><input class="form-control" type="text" ng-model="ingredient.name"></td>
-              <td><input class="form-control" type="text" ng-model="ingredient.price"></td>
-              <td><input class="form-control" type="text" ng-model="ingredient.count"></td>
               <td><input class="form-control" type="text" ng-model="ingredient.weight"></td>
             </tr>
           </table>
