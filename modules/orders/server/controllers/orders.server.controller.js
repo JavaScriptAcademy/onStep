@@ -6,35 +6,77 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Order = mongoose.model('Order'),
+  Dish = mongoose.model('Dish'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
 /**
- * Create a Order
+ * Create a Order, this is used for
+ * create an order from the order button of detail page
  */
-exports.create = function(req, res) {
-  console.log(req.body);
-  var order = new Order(req.body);
-  order._creator = req.user._id;
 
-  // for(var i = 0; i < req.body.dishes.length; i++){
-  //   order.dishes.push({
-  //     id: req.body.dishes[i]._id,
-  //     quantity: req.body.dishes[i].quantity,
-  //     sumPrice: req.body.dishes[i].sumPrice
-  //   });
-  // }
-  // order.deliverInfo = req.body.deliverInfo;
-  // order.totalPrice = req.body.totalPrice;
-  // order.status = 'PreOrder';
-  order.save(function(err) {
-    if (err) {
-      console.log(err);
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
+exports.create = function(req, res){
+  // var dishId = req.body.dishes.id;
+  var dishId = req.body.dishId;
+  Order.findOne({ status: 'PreOrder' },{ }, function(error, order){
+    if(order === null){
+      Dish.findOne({ _id: dishId }, { }, function(error, dish){
+        if(dish === null){
+          return res.status(400).send({
+            message: errorHandler.getErrorMessage('dish is not found')
+          });
+        }
+        order = new Order();
+        order._creator = req.user._id;
+        order.dishes.push({
+          _dish: dish,
+          quantity: 1
+        });
+        order.deliverInfo = null;
+        order.totalPrice = null;
+        order.status = 'PreOrder';
+        order.save(function(err) {
+          if(err){
+            return res.status(400).send({
+              message: errorHandler.getErrorMessage(err)
+            });
+          }else{
+            res.jsonp({ orderId: order._id });
+          }
+        });
       });
-    } else {
-      res.jsonp({ orderId: order._id });
+
+    }else{
+      Dish.findOne({ _id: dishId }, { }, function(error, dish){
+        if(dish === null){
+          return res.status(400).send({
+            message: errorHandler.getErrorMessage('dish is not found')
+          });
+        }
+        var existing = false;
+        _.each(order.dishes, function(dishItem){
+          if(String(dishItem._dish) === String(dish._id)){
+            ++dishItem.quantity;
+            existing = true;
+          }
+        });
+        if(existing === false){
+          order.dishes.push({
+            _dish: dish,
+            quantity: 1
+          });
+        }
+
+        order.save(function(err) {
+          if(err){
+            return res.status(400).send({
+              message: errorHandler.getErrorMessage(err)
+            });
+          }else{
+            res.jsonp({ orderId: order._id });
+          }
+        });
+      });
     }
   });
 };
