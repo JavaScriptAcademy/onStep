@@ -29,6 +29,9 @@ exports.create = function(req, res){
         order._creator = req.user._id;
         order.dishes.push({
           _dish: dish,
+          name: dish.name,
+          dishImage: dish.dishImage,
+          price: dish.price,
           quantity: 1
         });
         order.deliverInfo = {
@@ -42,8 +45,6 @@ exports.create = function(req, res){
         };
         order.totalPrice = dish.price;
         order.status = 'preorder';
-        console.log(dish);
-        console.log(order._dish);
         order.save(function(err) {
           if(err){
             return res.status(400).send({
@@ -71,6 +72,9 @@ exports.create = function(req, res){
         if(existing === false){
           order.dishes.push({
             _dish: dish,
+            name: dish.name,
+            dishImage: dish.dishImage,
+            price: dish.price,
             quantity: 1
           });
         }
