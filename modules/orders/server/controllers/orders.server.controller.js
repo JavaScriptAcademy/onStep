@@ -17,7 +17,7 @@ var path = require('path'),
 exports.create = function(req, res){
   // var dishId = req.body.dishes.id;
   var dishId = req.body.dishId;
-  Order.findOne({ status: 'PreOrder' },{ }, function(error, order){
+  Order.findOne({ status: 'preorder' },{ }, function(error, order){
     if(order === null){
       Dish.findOne({ _id: dishId }, { }, function(error, dish){
         if(dish === null){
@@ -41,7 +41,7 @@ exports.create = function(req, res){
           }
         };
         order.totalPrice = dish.price;
-        order.status = 'PreOrder';
+        order.status = 'preorder';
         order.save(function(err) {
           if(err){
             return res.status(400).send({
