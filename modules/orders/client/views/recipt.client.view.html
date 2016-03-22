@@ -1,12 +1,19 @@
 <section>
   <div class="page-header">
-    <h1>Orders</h1>
+    <h1>Recipt</h1>
   </div>
   <div class="list-group">
     <div data-ng-repeat="order in vm.orders"
        class="list-group-item">
       <small class="list-group-item-text">
 
+        <div class="procedure-details" data-ng-repeat="dish in order.dishes" >
+            <p>Number of patient discharges:</p>
+            <p>Average amount covered by Medicare: </p>
+            <p>Average total payments: </p>
+        </div>
+
+        <br>
         <span><b>Status: </b>{{order.status}}</span>
         <br>
         <span><b>ToalPrice: </b>{{order.totalPrice}}<b> RMB</b></span>
@@ -14,15 +21,6 @@
         <span><b>Name: </b>{{order.deliverInfo.name}}</span>
         <br>
         <span><b>Address: </b>{{order.deliverInfo.address}}</span>
-        <div>
-            <h4 ng-click="show = !show">Details</h4>
-              <div class="procedure-details"
-              data-ng-repeat="dish in order.dishes" ng-show="show">
-                  <p>Number of patient discharges:</p>
-                  <p>Average amount covered by Medicare: </p>
-                  <p>Average total payments: </p>
-              </div>
-        </div>
 
       </small>
       <h4 class="list-group-item-heading" data-ng-bind="order.name"></h4>

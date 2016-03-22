@@ -151,6 +151,7 @@ exports.delete = function(req, res) {
  * List of Orders
  */
 exports.list = function(req, res) {
+
   Order.find({_creator: req.user._id}).sort('-created').exec(function(err, orders) {
     if (err) {
       return res.status(400).send({
