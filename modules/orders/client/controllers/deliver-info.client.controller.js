@@ -40,7 +40,7 @@
     $scope.updateOrder = function(){
       var order = OrdersService.get({ orderId: $stateParams.orderId }, function() {
         order.deliverInfo = $scope.deliverInfo;
-        order.status = 'Paying';
+        order.status = 'paying';
         //Redict after save
         OrdersService.update({ id: $stateParams.orderId }, order)
           .$promise.then(function(response){
