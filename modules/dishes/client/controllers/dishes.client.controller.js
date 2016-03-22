@@ -20,6 +20,7 @@
     vm.addIngredient = addIngredient;
     vm.orders = [];
     vm.createLocalOrder = createLocalOrder;
+    vm.addCookingSteps = addCookingSteps;
 
     function addIngredient(){
       vm.dish.ingredients = vm.dish.ingredients || [];
@@ -34,6 +35,14 @@
       vm.dish.ingredient.price = '';
       vm.dish.ingredient.count = '';
       vm.dish.ingredient.weight = '';
+    }
+// cookingSteps
+    function addCookingSteps(){
+      vm.dish.cookingSteps = vm.dish.cookingSteps || [];
+      vm.dish.cookingSteps.push(
+        vm.dish.cookingStep
+      );
+      vm.dish.cookingStep = '';
     }
 
     function createLocalOrder(dishId){

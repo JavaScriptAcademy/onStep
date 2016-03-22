@@ -18,17 +18,14 @@
         <span><b>Name: </b>{{order.deliverInfo.name}}</span>
         <br>
         <span><b>Address: </b>{{order.deliverInfo.address}}</span>
-        <div >
-          <ul class="procedures">
-            <li data-ng-repeat="dish in order.dishes">
-                <h4><div ng-click="show = !show">{{dish.sumPrice}}</div></h4>
-                 <div class="procedure-details" ng-show="show">
-                    <p>Number of patient discharges:</p>
-                    <p>Average amount covered by Medicare: </p>
-                    <p>Average total payments: </p>
-                 </div>
-            </li>
-          </ul>
+        <div>
+            <h4 ng-click="show = !show">Details</h4>
+              <div class="procedure-details"
+              data-ng-repeat="dish in order.dishes" ng-show="show">
+                  <p>Number of patient discharges:</p>
+                  <p>Average amount covered by Medicare: </p>
+                  <p>Average total payments: </p>
+              </div>
         </div>
 
       </small>

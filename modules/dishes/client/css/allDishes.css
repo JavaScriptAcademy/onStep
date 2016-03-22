@@ -1,0 +1,11 @@
+.thumbnail img{
+  width: 100%;
+}
+
+.thumbnailRight p{
+  margin-top: 20px;
+}
+
+.thumbnail h3:hover, .thumbnail img:hover{
+  cursor: pointer;
+}

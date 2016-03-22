@@ -20,15 +20,26 @@
         url: '/dishes',
         template: '<ui-view/>',
       })
+      // .state('dishes.list', {
+      //   url: '',
+      //   templateUrl: 'modules/dishes/client/views/list-dishes.client.view.html',
+      //   controller: 'DishesListController',
+      //   controllerAs: 'vm',
+      //   data: {
+      //     pageTitle: 'Dishes List'
+      //   }
+      // })
+
       .state('dishes.list', {
         url: '',
-        templateUrl: 'modules/dishes/client/views/list-dishes.client.view.html',
+        templateUrl: 'modules/dishes/client/views/all-dishes.client.view.html',
         controller: 'DishesListController',
         controllerAs: 'vm',
         data: {
           pageTitle: 'Dishes List'
         }
       })
+
       .state('dishes.create', {
         url: '/create',
         templateUrl: 'modules/dishes/client/views/form-dish.client.view.html',
