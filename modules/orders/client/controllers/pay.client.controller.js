@@ -27,7 +27,7 @@
     };
 
     $scope.completePay = function(){
-       $state.go('recipt',{ orderId: $stateParams.orderId });
-    }
+      $state.go('recipt',{ orderId: $stateParams.orderId });
+    };
   }
 })();

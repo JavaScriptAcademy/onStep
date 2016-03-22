@@ -16,10 +16,10 @@
       $http({
         url: '/api/orders',
         type: 'get'
-      }).then(function(orders) {
-        var orders = orders.data;
+      }).then(function(ordersData) {
+        var orders = ordersData.data;
         for(var i = 0; i < orders.length; i++){
-          if(orders[i].status == 'preorder'){
+          if(orders[i].status === 'preorder'){
             $scope.preOrder = orders[i];
             break;
           }
@@ -48,11 +48,11 @@
     $scope.updateOrder = function(){
       var order = $scope.preOrder;
       order.status = 'ordered';
-      OrdersService.update({ id: $scope.preOrder._id}, order)
+      OrdersService.update({ id: $scope.preOrder._id }, order)
         .$promise.then(function(response){
           $state.go('deliver-info',{ orderId: order._id });
         });
-    }
+    };
     // $scope.updateOrder = function(){
     //   var order = OrdersService.get({ orderId: }, function() {
     //     order.deliverInfo = $scope.deliverInfo;

@@ -5,18 +5,21 @@
     .module('orders')
     .controller('ReciptController', ReciptController);
 
-  ReciptController.$inject = ['$scope'];
+  ReciptController.$inject = ['$scope', 'OrdersService', '$stateParams'];
 
-  function ReciptController($scope) {
+  function ReciptController($scope, OrdersService, $stateParams) {
     var vm = this;
+    vm.order = {};
 
     // Recipt controller logic
     // ...
 
     $scope.recipt = function(){
+      console.log($stateParams.orderId);
       var getorder = OrdersService.get({ orderId: $stateParams.orderId }, function() {
-        vm.orders = getorder;
+        vm.order = getorder;
+        console.log(getorder);
       });
-      };
+    };
   }
 })();
