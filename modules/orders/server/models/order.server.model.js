@@ -20,6 +20,9 @@ var OrderSchema = new Schema({
         type:Schema.ObjectId,
         ref: 'Dish'
       },
+      name: String,
+      dishImage: String,
+      price: Number,
       quantity: Number,
     }
   ],

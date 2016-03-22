@@ -42,6 +42,8 @@ exports.create = function(req, res){
         };
         order.totalPrice = dish.price;
         order.status = 'preorder';
+        console.log(dish);
+        console.log(order._dish);
         order.save(function(err) {
           if(err){
             return res.status(400).send({
