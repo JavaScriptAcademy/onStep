@@ -35,7 +35,7 @@ var OrderSchema = new Schema({
   totalPrice: Number,
   status: {
     type: String,
-    enum: ['PreOrder', 'Ordered', 'Paying', 'Paid']
+    enum: ['preorder', 'ordered', 'paying', 'paid']
   }
 });
 

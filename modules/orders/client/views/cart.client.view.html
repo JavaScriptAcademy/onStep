@@ -1,27 +1,28 @@
 <section ng-controller="CartController" ng-init='getInitOrder()'>
 <h3>Shopping Cart</h3>
 <div class="container cart">
-  <form class="form-horizontal" ng-submit="create()">
+ <!--  <form class="form-horizontal" ng-submit="create()" ng-repeat=" order in orders | filter:{ status: 'preorder' }"> -->
+ <form class="form-horizontal" ng-submit="updateOrder()" >
     <div class="form-group">
       <div class="col-sm-2 col-md-2 col-md-offset-8 text-center">
-        <label>Toal: ${{order.totalPrice}}</label>
+        <label>Toal: ${{preOrder.totalPrice}}</label>
       </div>
       <div class="col-sm-2 col-md-2">
         <button type="submit" class="btn btn-success">Checkout</button>
       </div>
     </div>
-    <ul class="list-unstyled form-group" ng-repeat="dish in order.dishes">
-      <li id="{{dish.id}}" class="form-group cart-dish-list cart-li-margin-top" >
+    <ul class="list-unstyled form-group" ng-repeat="dish in preOrder.dishes">
+      <li id="{{dish._id}}" class="form-group cart-dish-list cart-li-margin-top">
           <div class="cart-dish-image col-sm-2 col-md-2">
             <a class="cart-dish-image img-thumbnail" href="">
-              <img class="cart-dish-image"src="http://i3.s2.dpfile.com/pc/a54015f85843d373b9f4ba445a181893%28700x700%29/thumb.jpg">
+              <img class="cart-dish-image" ng-src="{{dish.dishImage}}">
             </a>
           </div>
           <div class="cart-dish-name col-sm-2 col-md-2">
             <a href="">{{dish.name}}</a>
           </div>
           <div class="col-sm-2 col-md-2 text-center">
-            <div>{{dish.unitPrice}}</div>
+            <div>{{dish.price}}</div>
           </div>
           <div class="col-sm-2 col-md-2 text-center">
             <div class="input-group row">
@@ -37,7 +38,7 @@
     </ul>
     <div class="form-group">
       <div class="col-sm-2 col-md-2 col-md-offset-8 text-center">
-        <label>Toal: ${{order.totalPrice}}</label>
+        <label>Toal: ${{preOrder.totalPrice}}</label>
       </div>
       <div class="col-sm-2 col-md-2">
         <button type="submit" class="btn btn-success">Checkout</button>

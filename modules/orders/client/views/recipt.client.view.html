@@ -1,0 +1,29 @@
+<section ng-init='recipt()'>
+  <div class="page-header">
+    <h1>Recipt</h1>
+  </div>
+  {{vm.orders}}
+  <div class="list-group">
+    <div class="list-group-item">
+      <small class="list-group-item-text">
+
+        <div class="procedure-details" data-ng-repeat="dish in vm.order.dishes" >
+            <p>Number of patient discharges:</p>
+            <p>Average amount covered by Medicare: </p>
+            <p>Average total payments: </p>
+        </div>
+
+        <br>
+        <span><b>Status: </b>{{vm.order.status}}</span>
+        <br>
+        <span><b>ToalPrice: </b>{{vm.order.totalPrice}}<b> RMB</b></span>
+        <br>
+        <span><b>Name: </b>{{vm.order.deliverInfo.name}}</span>
+        <br>
+        <span><b>Address: </b>{{vm.order.deliverInfo.address}}</span>
+
+      </small>
+      <h4 class="list-group-item-heading" data-ng-bind="vm.order.name"></h4>
+    </div>
+  </div>
+</section>
