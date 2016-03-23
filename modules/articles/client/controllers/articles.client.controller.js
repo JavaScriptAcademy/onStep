@@ -36,6 +36,7 @@
       if (vm.article._id) {
         vm.article.$update(successCallback, errorCallback);
       } else {
+        console.log(vm.article);
         vm.article.$save(successCallback, errorCallback);
       }
 

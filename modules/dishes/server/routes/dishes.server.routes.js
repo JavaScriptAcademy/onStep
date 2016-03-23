@@ -8,6 +8,8 @@ var dishesPolicy = require('../policies/dishes.server.policy'),
 
 module.exports = function(app) {
   // Dishes Routes
+  //build the api for random dishes
+  app.route('/api/dishes/getRandom').get(dishes.getRandom);
   app.route('/api/dishes').all(dishesPolicy.isAllowed)
     .get(dishes.list)
     .post(dishes.create);

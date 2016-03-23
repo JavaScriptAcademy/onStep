@@ -1,0 +1,30 @@
+<section class="row" ng-controller="addressManageController as adCtrl">
+  <div class="col-xs-offset-1 col-xs-10 col-md-12">
+    <form name="addressForm" ng-submit="updateUserProfile(addressForm.$valid)" class="updateAddress" novalidate autocomplete="off">
+          <table class="table">
+            <tr>
+              <th></th>
+              <th>Address</th>
+            </tr>
+            <tr>
+              <td><span class="btn btn-default" ng-click="addIngredient()">add</span></td>
+              <td><input class="form-control" type="text" ng-model="adCtrl.user.address"></td>
+            </tr>
+            <tr ng-repeat="address in user.deliveryInfo.addresses track by $index">
+              <td><span class="btn btn-default" ng-click="user.deliveryInfo.addresses.splice($index, 1)">remove</span></td>
+              <td><input class="form-control" type="text" ng-model="address"></td>
+            </tr>
+          </table>
+
+        <div class="text-center form-group">
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+        <div ng-show="success" class="text-center text-success">
+          <strong>Profile Saved Successfully</strong>
+        </div>
+        <div ng-show="error" class="text-center text-danger">
+          <strong ng-bind="error"></strong>
+        </div>
+    </form>
+  </div>
+</section>

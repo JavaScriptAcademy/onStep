@@ -81,7 +81,7 @@ exports.delete = function(req, res) {
  * List of Articles
  */
 exports.list = function(req, res) {
-  Article.find().sort('-created').populate('user', 'displayName').exec(function(err, articles) {
+  Article.find().sort('-created').populate('user', 'username').exec(function(err, articles) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -103,7 +103,7 @@ exports.articleByID = function(req, res, next, id) {
     });
   }
 
-  Article.findById(id).populate('user', 'displayName').exec(function (err, article) {
+  Article.findById(id).populate('user', 'username').exec(function (err, article) {
     if (err) {
       return next(err);
     } else if (!article) {

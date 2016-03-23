@@ -15,7 +15,6 @@ var path = require('path'),
 exports.create = function(req, res) {
   var dish = new Dish(req.body);
   dish.user = req.user;
-  console.log(dish.user,req.user);
   dish.save(function(err) {
     if (err) {
       return res.status(400).send({
@@ -81,7 +80,7 @@ exports.delete = function(req, res) {
  * List of Dishes
  */
 exports.list = function(req, res) {
-  Dish.find().sort('-created').populate('user', 'displayName').exec(function(err, dishes) {
+  Dish.find().sort('-orderTimes').populate('user', 'username').limit(3).exec(function(err, dishes) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -92,6 +91,28 @@ exports.list = function(req, res) {
   });
 };
 
+exports.getRandom = function(req, res) {
+  function shuffle(a) {
+      var j, x, i;
+      for (i = a.length; i; i -= 1) {
+          j = Math.floor(Math.random() * i);
+          x = a[i - 1];
+          a[i - 1] = a[j];
+          a[j] = x;
+      }
+      return a;
+  }
+  Dish.find().exec(function(err, dishes) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      dishes = shuffle(dishes).slice(0,6);
+      res.jsonp(dishes);
+    }
+  });
+};
 /**
  * Dish middleware
  */
@@ -103,7 +124,7 @@ exports.dishByID = function(req, res, next, id) {
     });
   }
 
-  Dish.findById(id).populate('user', 'displayName').exec(function (err, dish) {
+  Dish.findById(id).populate('user', 'username').exec(function (err, dish) {
     if (err) {
       return next(err);
     } else if (!dish) {

@@ -19,4 +19,7 @@ module.exports = function(app) {
 
   // Finish by binding the Order middleware
   app.param('orderId', orders.orderByID);
+
+/*  app.route('/api/orders/status/:orderStatus').all(ordersPolicy.isAllowed)
+    .get(orders.orderByStatus);*/
 };

@@ -1,0 +1,9 @@
+<section ng-controller="PayController" ng-init="getPayMethod()">
+  <div class="list-group" ng-repeat="payMethod in payMethods">
+    <a href="{{payMethod.link}}" class="list-group-item">
+      <h4 class="list-group-item-heading">{{payMethod.name}}</h4>
+      <p class="list-group-item-text"><img class='pay-method-icon' ng-src="{{payMethod.image}}"></p>
+    </a>
+  </div>
+   <button class="btn btn-info" ng-click="completePay()">Done</button>
+</section>

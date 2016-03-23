@@ -13,7 +13,7 @@
       title: 'Dishes',
       state: 'dishes',
       type: 'dropdown',
-      roles: ['user']
+      roles: ['*']
     });
 
     // Add the dropdown list item

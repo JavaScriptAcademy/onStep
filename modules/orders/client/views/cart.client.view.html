@@ -1,33 +1,36 @@
 <section ng-controller="CartController" ng-init='getInitOrder()'>
-<h3>Shopping Cart</h3>
+
 <div class="container cart">
-  <form class="form-horizontal" ng-submit="create()">
+ <!--  <form class="form-horizontal" ng-submit="create()" ng-repeat=" order in orders | filter:{ status: 'preorder' }"> -->
+ <div class="row">
+  <h3 class="col-md-8 col-md-offset-2">Shopping Cart</h3>
+  <form class="form-horizontal col-md-8 col-md-offset-2" ng-submit="updateOrder()" ng-show="preOrder">
     <div class="form-group">
       <div class="col-sm-2 col-md-2 col-md-offset-8 text-center">
-        <label>Toal: ${{order.totalPrice}}</label>
+        <label>Toal: ${{preOrder.totalPrice}}</label>
       </div>
       <div class="col-sm-2 col-md-2">
         <button type="submit" class="btn btn-success">Checkout</button>
       </div>
     </div>
-    <ul class="list-unstyled form-group" ng-repeat="dish in order.dishes">
-      <li id="{{dish.id}}" class="form-group cart-dish-list cart-li-margin-top" >
+    <ul class="list-unstyled form-group list-group" ng-repeat="dish in preOrder.dishes">
+      <li id="{{dish._id}}" class="form-group cart-dish-list cart-li-margin-top list-group-item">
           <div class="cart-dish-image col-sm-2 col-md-2">
-            <a class="cart-dish-image img-thumbnail" href="">
-              <img class="cart-dish-image"src="http://i3.s2.dpfile.com/pc/a54015f85843d373b9f4ba445a181893%28700x700%29/thumb.jpg">
+            <a class="cart-dish-image img-thumbnail" ng-click="linkOperation(dish)">
+              <img class="cart-dish-image" ng-src="{{dish.dishImage}}">
             </a>
           </div>
           <div class="cart-dish-name col-sm-2 col-md-2">
-            <a href="">{{dish.name}}</a>
+            <a class="cart-page-a" ng-click="linkOperation(dish)">{{dish.name}}</a>
           </div>
-          <div class="col-sm-2 col-md-2 text-center">
-            <div>{{dish.unitPrice}}</div>
+          <div class="col-sm-2 col-md-1 text-center">
+            <div>{{dish.price}}</div>
           </div>
-          <div class="col-sm-2 col-md-2 text-center">
-            <div class="input-group row">
-              <button type="button" class="col-sm-1 col-md-2  text-center" ng-click="decreaseQuantity(dish)">-</button>
-              <input type='text' class="col-sm-8 col-md-3 text-center" value={{dish.quantity}}></input>
-              <button type="button" class="col-sm-1 col-md-2 text-center" ng-click="increaseQuantity(dish)">+</button>
+          <div class="col-sm-2 col-md-3">
+            <div class="input-group row text-center">
+              <button type="button" class="text-center" ng-click="decreaseQuantity(dish)">-</button>
+              <input type='text' class="text-center cart-quantity-input" value={{dish.quantity}}></input>
+              <button type="button" class="text-center" ng-click="increaseQuantity(dish)">+</button>
             </div>
           </div>
           <div class="col-sm-2 col-md-2 text-center">
@@ -37,12 +40,18 @@
     </ul>
     <div class="form-group">
       <div class="col-sm-2 col-md-2 col-md-offset-8 text-center">
-        <label>Toal: ${{order.totalPrice}}</label>
+        <label>Toal: ${{preOrder.totalPrice}}</label>
       </div>
       <div class="col-sm-2 col-md-2">
         <button type="submit" class="btn btn-success">Checkout</button>
       </div>
     </div>
   </form>
+  <h2 class="col-md-8 col-md-offset-2 text-center" ng-hide="preOrder">
+    <p>You have not order anything!</p>
+    <p>You can order dishes from
+      <a href="{{homePagelink}}">here</a> as you pleased
+    </p>
+  </h2>
 </div>
 </section>
