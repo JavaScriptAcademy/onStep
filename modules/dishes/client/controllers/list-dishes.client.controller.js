@@ -13,7 +13,6 @@
     vm.ramdomDishes = RandomService.query();
     vm.authentication = Authentication;
 
-
     vm.createLocalOrder = createLocalOrder;
     function createLocalOrder(dishId){
       // console.log("hello");
@@ -22,13 +21,13 @@
       // console.log(vm.orders);
       // vm.dishService.setData(vm.orders);
 
+
       if (vm.authentication.user === '') {
         $state.go('authentication.signin');
       }else{
         vm.order = new OrdersService();
         vm.order.dishId = dishId;
         vm.order.$save(successCallback, errorCallback);
-
       }
       function successCallback(res) {
 

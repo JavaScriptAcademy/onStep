@@ -18,10 +18,20 @@
 .thumbnail .caption{
   height: 130px;
 }
+
 .homeOrder{
   position: absolute;
   bottom: 20px;
 }
+
+.homeOrder span{
+  display: none;
+  position: absolute;
+  margin-left: 10px;
+  top: -23px;
+  color: #f39c12;
+}
+
 .carousel-inner {
   width:100%;
   max-height: 400px !important;
@@ -31,5 +41,49 @@
   width: 100%;
   background-position: center;
   background-size: cover;
+}
 
+
+
+@-webkit-keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    -ms-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+  }
+}
+
+.homeOrder span.flyIn {
+  display: block;
+  -webkit-animation-name: fadeInUp;
+  -moz-animation-name:fadeInUp;
+  animation-name: fadeInUp;
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration:1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  animation-fill-mode: both;
 }

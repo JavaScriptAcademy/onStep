@@ -47,9 +47,11 @@
           </small>
           <p class="homeOrder">
             <a class="btn btn-primary"
-            data-ng-click="vm.createLocalOrder(dish._id)">
+            data-ng-click="vm.createLocalOrder(dish._id)"
+            onclick="flyIn(this)">
             <i class="glyphicon glyphicon-shopping-cart"></i>
           </a>
+          <span>+1</span>
         </p>
       </div>
 
@@ -60,3 +62,11 @@
   No Dishes yet, why don't you <a data-ui-sref="dishes.create">create one</a>?
 </div>
 </section>
+
+<script type="text/javascript">
+  function flyIn(obj){
+    $(obj).next().addClass('flyIn').one('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd',function(){
+      $(this).removeClass('flyIn');
+    })
+  }
+</script>

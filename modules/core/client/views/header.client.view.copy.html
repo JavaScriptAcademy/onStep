@@ -17,10 +17,7 @@
             <a ui-sref="{{subitem.state}}" ng-bind="subitem.title"></a>
           </li>
         </ul>
-        <a ng-switch-default ui-sref="{{item.state}}">
-          {{item.title}}
-          <span class="badge" ng-show="item.showBadge">2</span>
-        </a>
+        <a ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right" ng-hide="authentication.user">
