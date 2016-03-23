@@ -20,6 +20,16 @@
     };
     $scope.deliverInfos={};
 
+    $scope.myDate = new Date();
+    $scope.minDate = new Date(
+      $scope.myDate.getFullYear(),
+      $scope.myDate.getMonth(),
+      $scope.myDate.getDate());
+    $scope.maxDate = new Date(
+      $scope.myDate.getFullYear(),
+      $scope.myDate.getMonth() + 6,
+      $scope.myDate.getDate());
+
     $scope.getUserDeliverInfo = function(){
       var deliverInformation = {
         addresses: ['Chongwenhuayuan Unit 10, Room 2003, Nanshan district, Shenzhen City", "Nanshan District, Hitech park, Shenzhen'],

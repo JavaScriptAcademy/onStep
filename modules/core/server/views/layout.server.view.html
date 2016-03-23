@@ -35,6 +35,7 @@
 
   <!-- Application CSS Files -->
   {% for cssFile in cssFiles %}<link rel="stylesheet" href="{{cssFile}}">{% endfor %}
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
 </head>
 
 <body class="ng-cloak">
@@ -54,6 +55,8 @@
   <script type="text/javascript" src="/socket.io/socket.io.js"></script>
   <script type="text/javascript" src="lib/jquery/dist/jquery.js"></script>
 
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
 
   {% if livereload %}
   <!--Livereload script rendered -->

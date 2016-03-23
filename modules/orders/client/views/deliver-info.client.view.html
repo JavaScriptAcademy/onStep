@@ -8,6 +8,7 @@
         <datalist id="deliverInfoDatalistAddress">
           <option value="{{address}}" ng-repeat="address in deliverInfos.addresses">
         </datalist>
+        <p ng-show="orderForm.address.$invalid && !orderForm.address.$pristine" class="help-block">Your Address is required.</p>
       </div>
     </div>
 
@@ -18,27 +19,31 @@
         <datalist id="deliverInfoDatalistName">
           <option value="{{name}}" ng-repeat="name in deliverInfos.names">
         </datalist>
-        <p ng-show="orderForm.name.$invalid && !orderForm.name.$pristine" class="help-block">You name is required.</p>
+        <p ng-show="orderForm.name.$invalid && !orderForm.name.$pristine" class="help-block">Your name is required.</p>
       </div>
      </div>
 
     <div class="form-group" ng-class="{ 'has-error' : orderForm.phone.$invalid && !orderForm.phone.$pristine }">
-      <label class="col-sm-2 col-md-2 control-label">Phone Number</label>
+      <label class="col-sm-2 col-md-2 control-label">PhoneNo.</label>
       <div class="col-sm-10 col-md-10">
         <input type="text" list="deliverInfoDatalistPhoneNumber" name="phone" class="form-control" placeholder="Phone Number" ng-model="deliverInfo.phone" required>
         <datalist id="deliverInfoDatalistPhoneNumber">
           <option value="{{phone}}" ng-repeat="phone in deliverInfos.phones">
         </datalist>
+         <p ng-show="orderForm.phone.$invalid && !orderForm.phone.$pristine" class="help-block">Please fill in the phone number.</p>
       </div>
     </div>
 
     <div class="form-group">
-      <label class="col-sm-2 col-md-2 control-label">Expect Delivery Time</label>
+      <label class="col-sm-2 col-md-2 control-label">Expect Delivery</label>
       <div class="col-sm-5 col-md-5">
-        <input type="date" class="form-control" ng-model="deliverInfo.time.date"></input>
+       <!--  <input type="date" class="form-control" ng-model="deliverInfo.time.date" required></input> -->
+        <h6>Date:</h6>
+        <input type="date" class="form-control" ng-model="deliverInfo.time.date" min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}"></input>
       </div>
       <div class="col-sm-5 col-md-5" >
-        <input list="deliverInfoDatalistTimeTime" type="text" class="form-control" ng-model="deliverInfo.time.time"></input>
+        <h6>Time Range:</h6>
+        <input list="deliverInfoDatalistTimeTime" type="text" class="form-control" ng-model="deliverInfo.time.time" required></input>
         <datalist id="deliverInfoDatalistTimeTime">
           <option value="09:00-12:00"></option>
           <option value="12:00-14:00"></option>
