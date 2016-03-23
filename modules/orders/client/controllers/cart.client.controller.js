@@ -10,6 +10,7 @@
   function CartController($scope, OrdersService, $location, $state, $http) {
     var vm = this;
     $scope.preOrder = null;
+    $scope.homePagelink = "http://localhost:3000/";
 
     //Get Init Order from local
     $scope.getInitOrder = function(){
@@ -48,7 +49,6 @@
       dish.sumPrice = dish.price * dish.quantity;
       $scope.preOrder.totalPrice = $scope.preOrder.totalPrice + dish.price;
     };
-
     $scope.updateOrder = function(){
       var order = $scope.preOrder;
       order.status = 'ordered';

@@ -3,8 +3,8 @@
 <div class="container cart">
  <!--  <form class="form-horizontal" ng-submit="create()" ng-repeat=" order in orders | filter:{ status: 'preorder' }"> -->
  <div class="row">
-  <form class="form-horizontal col-md-8 col-md-offset-2" ng-submit="updateOrder()" >
-  <h3>Shopping Cart</h3>
+  <h3 class="col-md-8 col-md-offset-2">Shopping Cart</h3>
+  <form class="form-horizontal col-md-8 col-md-offset-2" ng-submit="updateOrder()" ng-show="preOrder">
     <div class="form-group">
       <div class="col-sm-2 col-md-2 col-md-offset-8 text-center">
         <label>Toal: ${{preOrder.totalPrice}}</label>
@@ -47,5 +47,11 @@
       </div>
     </div>
   </form>
+  <h2 class="col-md-8 col-md-offset-2 text-center" ng-hide="preOrder">
+    <p>You have not order anything!</p>
+    <p>You can order dishes from
+      <a href="{{homePagelink}}">here</a> as you pleased
+    </p>
+  </h2>
 </div>
 </section>
