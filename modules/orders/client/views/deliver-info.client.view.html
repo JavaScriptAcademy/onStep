@@ -37,7 +37,6 @@
     <div class="form-group">
       <label class="col-sm-2 col-md-2 control-label">Expect Delivery</label>
       <div class="col-sm-5 col-md-5">
-       <!--  <input type="date" class="form-control" ng-model="deliverInfo.time.date" required></input> -->
         <h6>Date:</h6>
         <input type="date" class="form-control" ng-model="deliverInfo.time.date" min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}"></input>
       </div>
