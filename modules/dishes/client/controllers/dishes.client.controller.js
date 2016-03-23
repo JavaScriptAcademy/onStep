@@ -3,8 +3,8 @@
 
   // Dishes controller
   angular
-    .module('dishes')
-    .controller('DishesController', DishesController);
+  .module('dishes')
+  .controller('DishesController', DishesController);
 
   DishesController.$inject = ['$scope', '$state', 'Authentication', 'OrdersService', 'dishResolve'];
 
@@ -34,25 +34,28 @@
       vm.dish.ingredient.weight = '';
     }
 // cookingSteps
-    function addCookingSteps(){
-      vm.dish.cookingSteps = vm.dish.cookingSteps || [];
-      vm.dish.cookingSteps.push(
-        vm.dish.cookingStep
-      );
-      vm.dish.cookingStep = '';
-    }
+function addCookingSteps(){
+  vm.dish.cookingSteps = vm.dish.cookingSteps || [];
+  vm.dish.cookingSteps.push(
+    vm.dish.cookingStep
+    );
+  vm.dish.cookingStep = '';
+}
 
-    function createLocalOrder(dishId){
+function createLocalOrder(dishId){
       // console.log("hello");
       // let order = dishService.getData();
       // vm.orders.push(vm.dish);
       // console.log(vm.orders);
       // vm.dishService.setData(vm.orders);
 
-      vm.order = new OrdersService();
-      vm.order.dishId = dishId;
-      vm.order.$save(successCallback, errorCallback);
-
+      if (vm.authentication.user === '') {
+        $state.go('authentication.signin');
+      }else{
+        vm.order = new OrdersService();
+        vm.order.dishId = dishId;
+        vm.order.$save(successCallback, errorCallback);
+      }
       function successCallback(res) {
         $state.go('dishes.view', {
           dishId: res._id

@@ -89,6 +89,7 @@ angular.module('core').service('Menus', [
         title: options.title || '',
         state: options.state || '',
         type: options.type || 'item',
+        showBadge: options.showBadge || false,
         class: options.class,
         roles: ((options.roles === null || typeof options.roles === 'undefined') ? this.defaultRoles : options.roles),
         position: options.position || 0,
