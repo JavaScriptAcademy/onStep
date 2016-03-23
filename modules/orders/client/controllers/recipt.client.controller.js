@@ -22,7 +22,17 @@
         console.log(getorder);
       });
     };
-    $scope.print = function(){};
+    $scope.print = function(){
+       /*window.print();*/
+        var bdhtml=window.document.body.innerHTML;
+        var sprnstr="<!--startprint-->";
+        var eprnstr="<!--endprint-->";
+        var prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+17);
+        prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
+        console.log(prnhtml);
+        window.document.body.innerHTML=prnhtml;
+        window.print();
+    };
 
     $scope.close = function(){
       // $state.go('home',{});
