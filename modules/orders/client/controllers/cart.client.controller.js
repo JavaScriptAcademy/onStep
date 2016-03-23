@@ -10,6 +10,7 @@
   function CartController($scope, OrdersService, $location, $state, $http) {
     var vm = this;
     $scope.preOrder = null;
+    $scope.homePagelink = "http://localhost:3000/";
 
     //Get Init Order from local
     $scope.getInitOrder = function(){
