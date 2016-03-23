@@ -2,7 +2,7 @@
   <div class="page-header">
     <h1>Orders</h1>
   </div>
-  <div class="list-group list-orders-page">
+<!--   <div class="list-group list-orders-page">
     <div data-ng-repeat="order in vm.orders"
        class="list-group-item">
       <small class="list-group-item-text">
@@ -27,6 +27,91 @@
       </small>
       <h4 class="list-group-item-heading" data-ng-bind="order.name"></h4>
     </div>
-  </div>
+  </div> -->
 
+  <div class="container">
+    <div class="row" >
+      <div class="col-md-2">
+        <ul class="nav nav-pills nav-stacked">
+          <li ng-class="{ active: vm.isSet(1) }">
+            <a href ng-click="vm.setTab(1)">Pending Pay</a>
+          </li>
+          <li ng-class="{ active: vm.isSet(2) }">
+            <a href ng-click="vm.setTab(2)">Pending Delivery</a>
+          </li>
+          <li ng-class="{ active: vm.isSet(3) }">
+            <a href ng-click="vm.setTab(3)">Pending Comments</a>
+          </li>
+          <li ng-class="{ active: vm.isSet(4) }">
+            <a href ng-click="vm.setTab(4)">History Orders</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-8">
+        <div class="jumbotron">
+          <div ng-show="vm.isSet(1)">
+            <h2>Pending Pay</h2>
+            <ul class="list-group list-orders-page">
+              <div data-ng-repeat="order in vm.orders|filter:{ status: 'paying' }" class="list-group-item">
+                <button class="btn btn-success" ng-click="vm.goToPay(order)">Go to Pay</button>
+                <br>
+                <small class="list-group-item-text">
+                  <span><b>ToalPrice: </b>{{order.totalPrice}}<b> RMB</b></span>
+                  <br>
+                  <span><b>Name: </b>{{order.deliverInfo.name}}</span>
+                  <br>
+                  <span><b>Phone: </b>{{order.deliverInfo.phone}}</span>
+                  <br>
+                  <span><b>Address: </b>{{order.deliverInfo.address}}</span>
+                  <br>
+                  <span><b>Status: </b>{{order.status}}</span>
+                  <div class="panel panel-default">
+                    <div class="panel-heading order-list-panel" ng-click="show = !show"><b>Details</b></div>
+                    <div class="panel-body procedure-details" ng-show="show">
+                      <p data-ng-repeat="dish in order.dishes">
+                      <b>Dish: </b>{{dish.name}}
+                      , <b>Quantity: </b>{{dish.quantity}}
+                      , <b>Total Price: </b>{{dish.sumPrice}}</p>
+                    </div>
+                  </div>
+                </small>
+              </div>
+            </ul>
+          </div>
+          <div ng-show="vm.isSet(2)">
+            <h2>Pending Delivery</h2>
+            <div data-ng-repeat="order in vm.orders|filter:{ status: 'paid' }" class="list-group-item">
+              <small class="list-group-item-text">
+                <span><b>Status: </b>{{order.status}}</span>
+                <br>
+                <span><b>ToalPrice: </b>{{order.totalPrice}}<b> RMB</b></span>
+                <br>
+                <span><b>Name: </b>{{order.deliverInfo.name}}</span>
+                <br>
+                <span><b>Phone: </b>{{order.deliverInfo.phone}}</span>
+                <br>
+                <span><b>Address: </b>{{order.deliverInfo.address}}</span>
+                <div class="panel panel-default">
+                  <div class="panel-heading order-list-panel" ng-click="show = !show"><b>Details</b></div>
+                  <div class="panel-body procedure-details" ng-show="show">
+                    <p data-ng-repeat="dish in order.dishes">
+                    <b>Dish: </b>{{dish.name}}
+                    <b>Quantity: </b>{{dish.quantity}}
+                    <b>Total Price: </b>{{dish.sumPrice}}</p>
+                  </div>
+                </div>
+              </small>
+            </div>
+          </div>
+          <div ng-show="vm.isSet(3)">
+            <h2>Pending Comments</h2>
+          </div>
+          <div ng-show="vm.isSet(4)">
+            <h2>History Orders</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
+
