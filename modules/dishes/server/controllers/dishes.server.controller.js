@@ -91,6 +91,17 @@ exports.list = function(req, res) {
   });
 };
 
+exports.listall = function(req, res) {
+  Dish.find().populate('user', 'username').exec(function(err, dishes) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.jsonp(dishes);
+    }
+  });
+};
 exports.getRandom = function(req, res) {
   function shuffle(a) {
       var j, x, i;
