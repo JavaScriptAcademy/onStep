@@ -18,14 +18,18 @@
       <div class="thumbnailRight col-md-3">
         <p>
           <a class="btn btn-primary"
-             data-ng-click="vm.createLocalOrder(dish._id)">
-            <i class="glyphicon glyphicon-shopping-cart"></i>
-          </a>
-        </p>
-      </div>
-    </div>
+          data-ng-click="vm.createLocalOrder(dish._id)"
+          onclick="flyIn(this)">
+          <i class="glyphicon glyphicon-shopping-cart"></i>
+        </a>
+        <span>+1</span>
+      </p>
+    </p>
+
   </div>
-  <div class="alert alert-warning text-center" data-ng-if="vm.dishes.$resolved && !vm.dishes.length">
-    No dishes yet, why don't you <a data-ui-sref="dishes.create">create one</a>?
-  </div>
+</div>
+</div>
+<div class="alert alert-warning text-center" data-ng-if="vm.dishes.$resolved && !vm.dishes.length">
+  No dishes yet, why don't you <a data-ui-sref="dishes.create">create one</a>?
+</div>
 </section>

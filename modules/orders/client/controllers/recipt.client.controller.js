@@ -13,6 +13,7 @@
 
     // Recipt controller logic
     // ...
+    $scope.date = new Date();
 
     $scope.recipt = function(){
       console.log($stateParams.orderId);

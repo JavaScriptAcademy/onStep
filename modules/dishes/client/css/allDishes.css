@@ -4,6 +4,14 @@
 
 .thumbnailRight p{
   margin-top: 20px;
+  position: relative;
+}
+.thumbnailRight span{
+  display: none;
+  position: absolute;
+  left: 10px;
+  top: -23px;
+  color: #f39c12;
 }
 
 .thumbnail h3:hover, .thumbnail img:hover{
