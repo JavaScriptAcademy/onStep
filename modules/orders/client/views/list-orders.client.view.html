@@ -2,7 +2,7 @@
   <div class="page-header">
     <h1>Orders</h1>
   </div>
-  <div class="list-group">
+  <div class="list-group list-orders-page">
     <div data-ng-repeat="order in vm.orders"
        class="list-group-item">
       <small class="list-group-item-text">
@@ -14,22 +14,19 @@
         <span><b>Name: </b>{{order.deliverInfo.name}}</span>
         <br>
         <span><b>Address: </b>{{order.deliverInfo.address}}</span>
-        <div>
-            <h4 ng-click="show = !show">Details</h4>
-              <div class="procedure-details"
-              data-ng-repeat="dish in order.dishes" ng-show="show">
-                  <p>Number of patient discharges:</p>
-                  <p>Average amount covered by Medicare: </p>
-                  <p>Average total payments: </p>
-              </div>
+        <div class="panel panel-default">
+          <div class="panel-heading order-list-panel" ng-click="show = !show"><b>Details</b></div>
+            <div class="panel-body procedure-details"
+            ng-show="show">
+                <p  data-ng-repeat="dish in order.dishes">
+                  <b>Dish: </b>{{dish.name}}
+                , <b>Quantity: </b>{{dish.quantity}}
+                , <b>Total Price: </b>{{dish.sumPrice}}</p>
+            </div>
         </div>
-
       </small>
       <h4 class="list-group-item-heading" data-ng-bind="order.name"></h4>
     </div>
   </div>
 
-  <div class="alert alert-warning text-center" data-ng-if="vm.orders.$resolved && !vm.orders.length">
-    Nothing here...
-  </div>
 </section>
