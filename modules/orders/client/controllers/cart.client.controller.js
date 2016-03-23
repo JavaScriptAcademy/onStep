@@ -27,7 +27,10 @@
         console.log($scope.preOrder);
       });
     };
-
+    $scope.linkOperation = function(dish){
+      // $state.go('dishes.view',{ dishId: dish._id });
+      $location.path('/dishes/'+ dish._dish);
+    }
     $scope.decreaseQuantity = function(dish){
       if(dish.quantity > 0){
         dish.quantity--;
