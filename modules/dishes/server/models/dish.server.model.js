@@ -20,7 +20,10 @@ var DishSchema = new Schema({
   ingredients : [{ ingredientId: Number, name: String, weight: String }],
   cookingSteps: [String],
   price: Number,
-  orderTimes: Number,
+  orderTimes: {
+    type:Number,
+    default: 0
+  },
   order : {
     type:Schema.ObjectId,
     ref: 'Order'

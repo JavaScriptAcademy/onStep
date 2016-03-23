@@ -10,7 +10,7 @@
     <div class="carousel-inner" role="listbox">
       <div ng-repeat="dish in vm.dishes" ng-class='$index===0?"active item":"item"'>
 
-        <div class="carouselImage" style="background-image:url( {{dish.dishImage}} )"></div>
+        <div data-ui-sref="dishes.view({ dishId: dish._id })" class="carouselImage" style="background-image:url( {{dish.dishImage}} )"></div>
         <div class="carousel-caption">
           <!-- description of images -->
           {{dish.name}}

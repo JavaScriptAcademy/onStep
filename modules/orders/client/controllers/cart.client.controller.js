@@ -32,10 +32,11 @@
       if(dish.quantity > 0){
         dish.quantity--;
         dish.sumPrice = dish.price * dish.quantity;
-        $scope.preOrder.totalPrice = $scope.order.totalPrice - dish.price;
+        $scope.preOrder.totalPrice = $scope.preOrder.totalPrice - dish.price;
       }
       else{
         dish.quantity = 0;
+        $scope.preOrder.totalPrice = 0;
       }
     };
 
