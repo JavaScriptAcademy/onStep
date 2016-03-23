@@ -1,6 +1,10 @@
 <section class="recipt-section" ng-init='recipt()'>
-  <div class="page-header">
-    <h1>Recipt</h1><button ng-click="print()">Print</button><button ng-click="close()">Close</button>
+  <div class="row page-header">
+    <h1>Recipt</h1>
+    <div class="col-md-3 col-md-offset-3 text-right">
+      <button class="btn btn-info" ng-click="print()">Print</button>
+      <button class="btn btn-info" ng-click="close()">Close</button>
+    </div>
   </div>
   <div class="container list-group recipt">
     <div class="list-group-item">
