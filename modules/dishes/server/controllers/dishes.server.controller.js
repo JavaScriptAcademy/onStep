@@ -80,7 +80,7 @@ exports.delete = function(req, res) {
  * List of Dishes
  */
 exports.list = function(req, res) {
-  Dish.find().sort('-created').populate('user', 'username').exec(function(err, dishes) {
+  Dish.find().sort('-orderTimes').populate('user', 'username').limit(3).exec(function(err, dishes) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -108,8 +108,7 @@ exports.getRandom = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      dishes = shuffle(dishes);
-      dishes = dishes.slice(3);
+      dishes = shuffle(dishes).slice(0,6);
       res.jsonp(dishes);
     }
   });

@@ -28,8 +28,9 @@
             <p class="help-block error-text" ng-message="required">Dish image is required.</p>
           </div>
         </div>
-        <div class="table-wrapper">
+        <div class="table-wrapper table-ingredient">
           <table class="table">
+
             <tr>
               <th></th>
               <th>Name</th>
@@ -47,6 +48,22 @@
             </tr>
           </table>
         </div>
+
+<!-- cooking steps -->
+        <div class="table-wrapper table-cook">
+          <table class="table">
+
+            <tr>
+              <td><span class="btn btn-default" ng-click="vm.addCookingSteps()">add</span></td>
+              <td><input class="form-control" type="text" ng-model="vm.dish.cookingStep"></td>
+            </tr>
+            <tr ng-repeat="cookingStep in vm.dish.cookingSteps">
+              <td><span class="btn btn-default" ng-click=" vm.dish.cookingSteps.splice($index, 1)">remove</span></td>
+              <td><input class="form-control" type="text" ng-model="cookingStep"></td>
+            </tr>
+          </table>
+        </div>
+
 
         <div class="form-group">
           <button type="submit" class="btn btn-primary">{{vm.dish._id ? 'Update' : 'Create'}}</button>

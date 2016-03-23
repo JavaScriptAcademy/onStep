@@ -18,5 +18,14 @@
     color: #959595;
     text-transform: uppercase;
     letter-spacing: 1px;
-    content: "Ingredients";
 }
+
+.table-ingredient:after{
+  content:"Ingredients";
+}
+
+.table-cook:after{
+  content:"Cooking Steps";
+}
+
+

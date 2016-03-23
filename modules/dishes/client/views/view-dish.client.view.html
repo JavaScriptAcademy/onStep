@@ -18,9 +18,17 @@
       </a>
     </div>
     <div class="des">
+      <hr>
       <h1>ingredients:</h1>
       <h4 data-ng-repeat="ingredient in vm.dish.ingredients">
-      {{ingredient.name}} {{ingredient.weight}}g</h4>
+
+      {{ingredient.name}}:{{ingredient.weight}}g</h4>
+      <hr>
+      <h1>Cooking Steps:</h1>
+      <h4 data-ng-repeat="cookingSteps in vm.dish.cookingSteps">
+
+      Step {{$index+1}} :{{cookingSteps}} </h4>
+      <hr>
       <h1>Dish Price:</h1>
       <h4 data-ng-bind="vm.dish.price | currency:'￥'"></h4>
       <h1>Order Times:</h1>
