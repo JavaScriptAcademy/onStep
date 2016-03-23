@@ -5,9 +5,9 @@
     .module('orders')
     .controller('ReciptController', ReciptController);
 
-  ReciptController.$inject = ['$scope', 'OrdersService', '$stateParams', '$location'];
+  ReciptController.$inject = ['$timeout', '$state', '$scope', 'OrdersService', '$stateParams', '$location'];
 
-  function ReciptController($scope, OrdersService, $stateParams, $location) {
+  function ReciptController($timeout, $state,$scope, OrdersService, $stateParams, $location) {
     var vm = this;
     vm.order = {};
 
@@ -29,10 +29,16 @@
         var eprnstr="<!--endprint-->";
         var prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+17);
         prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
-        console.log(prnhtml);
         window.document.body.innerHTML=prnhtml;
         window.print();
+        // window.close();
+        // $timeout(function () { window.close(); }, 40);
+        // $state.go('recipt',{ orderId: $stateParams.orderId });
     };
+/*
+    $scope.onPrintFinished = function(print){
+      window.close();
+    };*/
 
     $scope.close = function(){
       // $state.go('home',{});
