@@ -23,6 +23,7 @@
     vm.addCookingSteps = addCookingSteps;
 
     function addIngredient(){
+
       vm.dish.ingredients = vm.dish.ingredients || [];
       vm.dish.ingredients.push({
         name:vm.dish.ingredient.name,
