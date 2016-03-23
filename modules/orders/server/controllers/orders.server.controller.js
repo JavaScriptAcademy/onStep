@@ -131,6 +131,20 @@ exports.update = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
+      if(order.status === 'paid'){
+        _.each(order.dishes, function(dishOfOrder){
+          Dish.findOne({ _id: dishOfOrder._dish }, { }, function(error, dish){
+            dish.orderTimes += dishOfOrder.quantity;
+            dish.save(function(err) {
+              if(err){
+                return res.status(400).send({
+                  message: errorHandler.getErrorMessage(err)
+                });
+              }
+           });
+          });
+        });
+      }
       res.jsonp(order);
     }
   });
@@ -140,7 +154,7 @@ exports.update = function(req, res) {
  * Delete an Order
  */
 exports.delete = function(req, res) {
-  var order = req.order ;
+  var order = req.order;
 
   order.remove(function(err) {
     if (err) {
