@@ -5,9 +5,9 @@
     .module('orders')
     .controller('ReciptController', ReciptController);
 
-  ReciptController.$inject = ['$scope', 'OrdersService', '$stateParams'];
+  ReciptController.$inject = ['$scope', 'OrdersService', '$stateParams', '$location'];
 
-  function ReciptController($scope, OrdersService, $stateParams) {
+  function ReciptController($scope, OrdersService, $stateParams, $location) {
     var vm = this;
     vm.order = {};
 
@@ -20,6 +20,12 @@
         vm.order = getorder;
         console.log(getorder);
       });
+    };
+    $scope.print = function(){};
+
+    $scope.close = function(){
+      // $state.go('home',{});
+      $location.path('/');
     };
   }
 })();

@@ -24,6 +24,7 @@ var OrderSchema = new Schema({
       dishImage: String,
       price: Number,
       quantity: Number,
+      sumPrice: Number
     }
   ],
   deliverInfo:{

@@ -5,9 +5,9 @@
     .module('orders')
     .controller('PayController', PayController);
 
-  PayController.$inject = ['$scope', '$state', '$stateParams'];
+  PayController.$inject = ['$scope', '$state', '$stateParams', 'OrdersService'];
 
-  function PayController($scope, $state, $stateParams) {
+  function PayController($scope, $state, $stateParams, OrdersService) {
     var vm = this;
     $scope.payMethods = [];
     $scope.getPayMethod = function(){
@@ -27,7 +27,14 @@
     };
 
     $scope.completePay = function(){
-      $state.go('recipt',{ orderId: $stateParams.orderId });
+      OrdersService.get({ orderId: $stateParams.orderId }, function(order) {
+        order.status = 'paid';
+        //Redict after save
+        OrdersService.update({ id: $stateParams.orderId }, order)
+          .$promise.then(function(response){
+            $state.go('recipt',{ orderId: $stateParams.orderId });
+          });
+      });
     };
   }
 })();

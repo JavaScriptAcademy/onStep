@@ -32,7 +32,8 @@ exports.create = function(req, res){
           name: dish.name,
           dishImage: dish.dishImage,
           price: dish.price,
-          quantity: 1
+          quantity: 1,
+          sumPrice: dish.price*1
         });
         order.deliverInfo = {
           address: null,
@@ -66,6 +67,7 @@ exports.create = function(req, res){
         _.each(order.dishes, function(dishItem){
           if(String(dishItem._dish) === String(dish._id)){
             ++dishItem.quantity;
+            dish.sumPrice += dish.price;
             existing = true;
           }
         });
@@ -75,7 +77,8 @@ exports.create = function(req, res){
             name: dish.name,
             dishImage: dish.dishImage,
             price: dish.price,
-            quantity: 1
+            quantity: 1,
+            sumPrice: dish.price
           });
         }
         order.totalPrice += dish.price;

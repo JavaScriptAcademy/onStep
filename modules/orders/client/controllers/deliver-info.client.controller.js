@@ -44,7 +44,6 @@
         //Redict after save
         OrdersService.update({ id: $stateParams.orderId }, order)
           .$promise.then(function(response){
-            console.log($stateParams.orderId);
             $state.go('pay',{ orderId: $stateParams.orderId });
           });
       });

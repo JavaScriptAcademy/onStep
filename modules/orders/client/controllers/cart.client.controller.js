@@ -31,17 +31,18 @@
     $scope.decreaseQuantity = function(dish){
       if(dish.quantity > 0){
         dish.quantity--;
-        // dish.sumPrice = dish.unitPrice * dish.quantity;
-        $scope.preOrder.totalPrice = $scope.order.totalPrice - dish.price;
+        dish.sumPrice = dish.price * dish.quantity;
+        $scope.preOrder.totalPrice = $scope.preOrder.totalPrice - dish.price;
       }
       else{
         dish.quantity = 0;
+        $scope.preOrder.totalPrice = 0;
       }
     };
 
     $scope.increaseQuantity = function(dish){
       dish.quantity++;
-      // dish.sumPrice = dish.unitPrice * dish.quantity;
+      dish.sumPrice = dish.price * dish.quantity;
       $scope.preOrder.totalPrice = $scope.preOrder.totalPrice + dish.price;
     };
 
@@ -53,35 +54,5 @@
           $state.go('deliver-info',{ orderId: order._id });
         });
     };
-    // $scope.updateOrder = function(){
-    //   var order = OrdersService.get({ orderId: }, function() {
-    //     order.deliverInfo = $scope.deliverInfo;
-    //     order.status = 'Paying';
-    //     //Redict after save
-    //     OrdersService.update({ id: $stateParams.orderId }, order)
-    //       .$promise.then(function(response){
-    //         $state.go('pay',{ orderId: $stateParams.orderId });
-    //       });
-    //   });
-    // };
-
-
-/*    $scope.create = function(){
-      var order = new OrdersService({
-        _creator: null,
-        dishes: { id: '56eeb20656e94da41339984e' },
-        deliverInfo: $scope.order.deliverInfo,
-        status: 'Ordered',
-        totalPrice: $scope.order.totalPrice
-      });
-
-      // Redirect after save
-      order.$save(function (response) {
-        // $location.path('/deliver-info/' + response.orderId);
-        $state.go('deliver-info',{ orderId: response.orderId });
-      }, function (errorResponse) {
-        $scope.error = errorResponse.data.message;
-      });
-    };*/
   }
 })();
