@@ -12,28 +12,29 @@
       title: 'Orders',
       state: 'orders.list',
       type: 'item',
-      roles: ['*']
+      roles: ['user','admin']
     });
 
     Menus.addMenuItem('topbar', {
       title: 'Cart',
       state: 'cart',
       type: 'item',
-      roles: ['*']
+      roles: ['user','admin']
     });
 
 
     // Add the dropdown list item
     Menus.addSubMenuItem('topbar', 'orders', {
       title: 'List Orders',
-      state: 'orders.list'
+      state: 'orders.list',
+      roles:['user','admin']
     });
 
     // Add the dropdown create item
-    Menus.addSubMenuItem('topbar', 'orders', {
-      title: 'Create Order',
-      state: 'orders.create',
-      roles: ['user']
-    });
+    // Menus.addSubMenuItem('topbar', 'orders', {
+    //   title: 'Create Order',
+    //   state: 'orders.create',
+    //   roles: ['user']
+    // });
   }
 })();

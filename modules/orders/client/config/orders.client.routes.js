@@ -13,25 +13,37 @@
         url: '/recipt/:orderId',
         templateUrl: 'modules/orders/client/views/recipt.client.view.html',
         controller: 'ReciptController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        data: {
+          roles: ['user', 'admin']
+        }
       })
       .state('pay', {
         url: '/pay/:orderId',
         templateUrl: 'modules/orders/client/views/pay.client.view.html',
         controller: 'PayController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        data: {
+          roles: ['user', 'admin']
+        }
       })
       .state('deliver-info', {
         url: '/deliver-info/:orderId',
         templateUrl: 'modules/orders/client/views/deliver-info.client.view.html',
         controller: 'DeliverInfoController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        data: {
+          roles: ['user', 'admin']
+        }
       })
       .state('cart', {
         url: '/cart',
         templateUrl: 'modules/orders/client/views/cart.client.view.html',
         controller: 'CartController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        data: {
+          roles: ['user', 'admin']
+        }
       })
       .state('orders', {
         abstract: true,
@@ -44,22 +56,23 @@
         controller: 'OrdersListController',
         controllerAs: 'vm',
         data: {
+          roles: ['user', 'admin'],
           pageTitle: 'Orders List'
         }
       })
-      .state('orders.create', {
-        url: '/create',
-        templateUrl: 'modules/orders/client/views/form-order.client.view.html',
-        controller: 'OrdersController',
-        controllerAs: 'vm',
-        resolve: {
-          orderResolve: newOrder
-        },
-        data: {
-          roles: ['user', 'admin'],
-          pageTitle : 'Orders Create'
-        }
-      })
+      // .state('orders.create', {
+      //   url: '/create',
+      //   templateUrl: 'modules/orders/client/views/form-order.client.view.html',
+      //   controller: 'OrdersController',
+      //   controllerAs: 'vm',
+      //   resolve: {
+      //     orderResolve: newOrder
+      //   },
+      //   data: {
+      //     roles: ['user', 'admin'],
+      //     pageTitle : 'Orders Create'
+      //   }
+      // })
       .state('orders.edit', {
         url: '/:orderId/edit',
         templateUrl: 'modules/orders/client/views/form-order.client.view.html',
@@ -82,6 +95,7 @@
           orderResolve: getOrder
         },
         data:{
+          roles: ['user', 'admin'],
           pageTitle: 'Order {{ articleResolve.name }}'
         }
       });

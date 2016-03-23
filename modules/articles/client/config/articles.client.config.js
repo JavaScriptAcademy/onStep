@@ -9,12 +9,12 @@
 
   function menuConfig(Menus) {
     // Set top bar menu items
-    Menus.addMenuItem('topbar', {
-      title: 'Articles',
-      state: 'articles',
-      type: 'dropdown',
-      roles: ['*']
-    });
+    // Menus.addMenuItem('topbar', {
+    //   title: 'Articles',
+    //   state: 'articles',
+    //   type: 'dropdown',
+    //   roles: ['*']
+    // });
 
     // Add the dropdown list item
     Menus.addSubMenuItem('topbar', 'articles', {
