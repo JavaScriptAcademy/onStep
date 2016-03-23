@@ -22,5 +22,8 @@
     vm.goToPay = function(order){
       $state.go('pay',{ orderId: order._id });
     }
+    vm.goToRecipt = function(order){
+      $state.go('recipt',{ orderId: order._id });
+    }
   }
 })();

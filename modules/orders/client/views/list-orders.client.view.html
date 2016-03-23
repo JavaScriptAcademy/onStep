@@ -80,8 +80,11 @@
           </div>
           <div ng-show="vm.isSet(2)">
             <h2>Pending Delivery</h2>
+
             <div data-ng-repeat="order in vm.orders|filter:{ status: 'paid' }" class="list-group-item">
               <small class="list-group-item-text">
+                <button class="btn btn-success" ng-click="vm.goToRecipt(order)">Get Recipt</button>
+                <br>
                 <span><b>Status: </b>{{order.status}}</span>
                 <br>
                 <span><b>ToalPrice: </b>{{order.totalPrice}}<b> RMB</b></span>
