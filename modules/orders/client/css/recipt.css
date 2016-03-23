@@ -1,3 +1,7 @@
 .recipt{
   font-size: 1.3em;
 }
+
+.recipt > *{
+  background-color: #F6F6F6;
+}

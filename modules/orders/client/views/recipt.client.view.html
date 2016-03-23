@@ -1,28 +1,57 @@
-<section ng-init='recipt()'>
+<section class="recipt-section" ng-init='recipt()'>
   <div class="page-header">
     <h1>Recipt</h1><button ng-click="print()">Print</button><button ng-click="close()">Close</button>
   </div>
-  <div class="list-group recipt">
+  <div class="container list-group recipt">
     <div class="list-group-item">
       <small class="list-group-item-text">
         <h2 class="text-center">One Step</h2>
         <p class="text-center">SHENZHEN NANSHAN <br> www.onestep.com</p>
         <br>
-        <div class="procedure-details">
-          <p  data-ng-repeat="dish in vm.order.dishes">
-            <b>Dish: </b>{{dish.name}}
-          , <b>Quantity: </b>{{dish.quantity}}
-          , <b>Total Price: </b>{{dish.sumPrice}}</p>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-left">
+              <p><b>Bill No. : </b>{{vm.order._id}}</p>
+            </div>
         </div>
-
-        <span><b>Status: </b>{{vm.order.status}}</span>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-left">
+              <p><b>Date/Time : </b>{{date | date:'yyyy-MM-dd HH:mm:ss'}}</p>
+            </div>
+        </div>
         <br>
-        <span><b>ToalPrice: </b>{{vm.order.totalPrice}}<b> RMB</b></span>
+        <div class="row">
+            <div class="col-md-3 col-md-offset-3 text-left"><b>Item</b></div>
+            <div class="col-md-3 text-right"><b>Price x Quantity</b></div>
+        </div>
         <br>
-        <span><b>Name: </b>{{vm.order.deliverInfo.name}}</span>
+        <div class="row" data-ng-repeat="dish in vm.order.dishes">
+            <div class="col-md-3 col-md-offset-3 text-left"><span>{{dish.name}}</span></div>
+            <div class="col-md-3 text-right"><span>¥ {{dish.sumPrice}} x {{dish.quantity}}</span></div>
+          </div>
         <br>
-        <span><b>Address: </b>{{vm.order.deliverInfo.address}}</span>
-
+        <div class="row">
+          <div class="col-md-3 col-md-offset-6 text-right"><b>ToalPrice: {{vm.order.totalPrice}} RMB</b></div>
+          <div class="col-md-3 col-md-offset-6 text-right"><b>Discount: 0%</b></div>
+          <div class="col-md-3 col-md-offset-6 text-right"><b>Charge: {{vm.order.totalPrice}} RMB</b></div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-left">
+              <p><b>Guest : </b>{{vm.order.deliverInfo.name}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-left">
+              <p><b>Delivery Address : </b>{{vm.order.deliverInfo.address}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-left">
+              <p><b>Delivery Date/time : </b>{{vm.order.deliverInfo.time.date | date:'yyyy-MM-dd'}} / {{vm.order.deliverInfo.time.time | date:'HH:mm:ss'}}</p>
+            </div>
+        </div>
+        <br>
+        <p class="text-center">THANK YOUR SHOPPING AT <br>ONESTEP</p>
       </small>
       <h4 class="list-group-item-heading" data-ng-bind="vm.order.name"></h4>
     </div>
