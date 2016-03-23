@@ -5,11 +5,9 @@
     .module('orders')
     .controller('DeliverInfoController', DeliverInfoController);
 
+  DeliverInfoController.$inject = ['$scope','OrdersService','$location', '$state', '$stateParams', 'Authentication'];
 
-  DeliverInfoController.$inject = ['$scope','OrdersService','$location', '$state', '$stateParams'];
-
-  function DeliverInfoController($scope, OrdersService, $location, $state, $stateParams) {
-
+  function DeliverInfoController($scope, OrdersService, $location, $state, $stateParams, Authentication) {
     var vm = this;
     $scope.deliverInfo = {
       address: null,
@@ -26,18 +24,18 @@
     $scope.minDate = new Date(
       $scope.myDate.getFullYear(),
       $scope.myDate.getMonth(),
-      $scope.myDate.getDate());
+      $scope.myDate.getDate()
+    );
     $scope.maxDate = new Date(
       $scope.myDate.getFullYear(),
       $scope.myDate.getMonth() + 6,
-      $scope.myDate.getDate());
+      $scope.myDate.getDate()
+    );
 
     $scope.getUserDeliverInfo = function(){
-      var deliverInformation = {
-        addresses: ['Chongwenhuayuan Unit 10, Room 2003, Nanshan district, Shenzhen City", "Nanshan District, Hitech park, Shenzhen'],
-        names: ['Claire', 'Wenjing', 'Miss Liu'],
-        phones: ['12345678911', '122334467788'],
-      };
+      $scope.user = Authentication.user;
+      console.log($scope.user.deliveryInfo);
+      var deliverInformation = $scope.user.deliveryInfo;
       $scope.deliverInfos = {
         addresses: deliverInformation.addresses,
         names: deliverInformation.names,
