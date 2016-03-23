@@ -1,0 +1,7 @@
+.list-orders-page{
+  font-size: 1.3em;
+}
+
+.order-list-panel:hover{
+  cursor: pointer;
+}
