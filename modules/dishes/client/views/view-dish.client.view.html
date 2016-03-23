@@ -20,11 +20,13 @@
     <div class="des">
       <h1>ingredients:</h1>
       <h4 data-ng-repeat="ingredient in vm.dish.ingredients">
+
       {{ingredient.name}}:{{ingredient.weight}}g</h4>
 
       <h1>Cooking Steps:</h1>
       <h4 data-ng-repeat="cookingSteps in vm.dish.cookingSteps">
       {{$index+1}}Step :{{cookingSteps}} </h4>
+
 
       <h1>Order Times:</h1>
       <h4 data-ng-bind="vm.dish.orderTimes"></h4>
