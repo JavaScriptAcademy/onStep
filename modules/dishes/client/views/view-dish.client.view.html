@@ -13,9 +13,12 @@
       <a class="btn btn-primary" data-ng-click="vm.remove()">
         <i class="glyphicon glyphicon-trash"></i>
       </a>
-      <a class="btn btn-primary" data-ng-click="vm.createLocalOrder(vm.dish._id)">
-        <i class="glyphicon glyphicon-shopping-cart"></i>
-      </a>
+      <div class="flyInBtn">
+        <a class="btn btn-primary" data-ng-click="vm.createLocalOrder(vm.dish._id)" onclick="flyIn(this)">
+          <i class="glyphicon glyphicon-shopping-cart"></i>
+        </a>
+        <span>+1</span>
+      </div>
     </div>
     <div class="des">
       <hr>

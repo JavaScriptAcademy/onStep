@@ -75,7 +75,7 @@
   }
 }
 
-.homeOrder span.flyIn {
+.homeOrder span.flyIn,.thumbnailRight span.flyIn,.flyInBtn span.flyIn{
   display: block;
   -webkit-animation-name: fadeInUp;
   -moz-animation-name:fadeInUp;

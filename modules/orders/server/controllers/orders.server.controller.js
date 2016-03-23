@@ -124,10 +124,8 @@ exports.read = function(req, res) {
  * Update a Order
  */
 exports.update = function(req, res) {
-  console.log('HI');
   var order = req.order;
   order = _.extend(order , req.body);
-  console.log('>>>>>'+ order);
   order.save(function(err) {
     if (err) {
       return res.status(400).send({

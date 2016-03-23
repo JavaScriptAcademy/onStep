@@ -1,7 +1,7 @@
 .page-header{
   text-align: center;
 }
-.page-header span{
+.page-header span:nth-child(1){
   font-size: 50px;
   letter-spacing: 3px;
   display: block;
@@ -22,4 +22,16 @@
 }
 .des h4{
   line-height: 60px;
+}
+.flyInBtn{
+  display: inline;
+  position: relative;
+}
+.flyInBtn span{
+  display: none;
+  position: absolute;
+  left: 50%;
+  margin-left: -8px;
+  top: -40px;
+  color: #f39c12;
 }

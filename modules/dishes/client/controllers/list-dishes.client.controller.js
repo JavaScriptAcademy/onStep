@@ -5,13 +5,14 @@
   .module('dishes')
   .controller('DishesListController', DishesListController);
 
-  DishesListController.$inject = ['DishesService','RandomService','OrdersService','Authentication','$state'];
+  DishesListController.$inject = ['DishesService','RandomService','OrdersService','Authentication','$state', 'AllDishesService'];
 
-  function DishesListController(DishesService,RandomService,OrdersService,Authentication,$state) {
+  function DishesListController( DishesService, RandomService, OrdersService, Authentication, $state, AllDishesService) {
     var vm = this;
     vm.dishes = DishesService.query();
     vm.ramdomDishes = RandomService.query();
     vm.authentication = Authentication;
+    vm.allDishes = AllDishesService.query();
 
     vm.createLocalOrder = createLocalOrder;
     function createLocalOrder(dishId){

@@ -3,7 +3,7 @@
 }
 
 .cart-dish-list{
-  height: 120px;
+  height: 100px;
 }
 
 div.cart-dish-image{
@@ -20,4 +20,14 @@ img.cart-dish-image, a.cart-dish-image{
 
 .pay-method-icon{
   width: 10%;
+}
+
+.cart-quantity-input{
+  display: inline;
+  width: 30%;
+}
+
+.cart-page-a{
+    color:#000000;
+    text-decoration:none;
 }
