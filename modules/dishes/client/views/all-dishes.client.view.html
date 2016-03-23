@@ -3,7 +3,7 @@
     <h1>All dishes</h1>
   </div>
   <div class="row">
-    <div class="col-md-12 thumbnail" data-ng-repeat="dish in vm.allDishes">
+    <div class="col-md-12 thumbnail" data-ng-repeat="dish in vm.dishes">
 
       <div class="thumbnailLeft col-md-3">
         <img data-ui-sref="dishes.view({ dishId: dish._id })" ng-src="{{dish.dishImage}}" alt="{{dish.name}}" />

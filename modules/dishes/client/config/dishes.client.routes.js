@@ -12,7 +12,7 @@
       .state('home', {
         url: '/',
         controller:'DishesListController',
-        templateUrl: 'modules/dishes/client/views/list-dishes.client.view.html',
+        templateUrl: 'modules/dishes/client/views/home-dishes.client.view.html',
         controllerAs: 'vm'
       })
       .state('dishes', {

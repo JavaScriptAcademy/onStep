@@ -17,6 +17,9 @@ module.exports = function(app) {
     .put(orders.update)
     .delete(orders.delete);
 
+  app.route('/api/orders/:orderId/:userId').all(ordersPolicy.isAllowed)
+    .get(orders.getUserOrder);
+
   // Finish by binding the Order middleware
   app.param('orderId', orders.orderByID);
 
