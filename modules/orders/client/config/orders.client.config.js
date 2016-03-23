@@ -10,10 +10,18 @@
     // Set top bar menu items
     Menus.addMenuItem('topbar', {
       title: 'Orders',
-      state: 'orders',
-      type: 'dropdown',
+      state: 'orders.list',
+      type: 'item',
       roles: ['*']
     });
+
+    Menus.addMenuItem('topbar', {
+      title: 'Cart',
+      state: 'cart',
+      type: 'item',
+      roles: ['*']
+    });
+
 
     // Add the dropdown list item
     Menus.addSubMenuItem('topbar', 'orders', {

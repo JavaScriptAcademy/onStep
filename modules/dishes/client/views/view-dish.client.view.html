@@ -27,6 +27,8 @@
       <h4 data-ng-repeat="cookingSteps in vm.dish.cookingSteps">
       Step {{$index+1}} :{{cookingSteps}} </h4>
       <hr>
+      <h1>Dish Price:</h1>
+      <h4 data-ng-bind="vm.dish.price | currency:'￥'"></h4>
       <h1>Order Times:</h1>
       <h4 data-ng-bind="vm.dish.orderTimes"></h4>
     </div>

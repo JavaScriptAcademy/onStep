@@ -17,7 +17,7 @@ var path = require('path'),
 exports.create = function(req, res){
   // var dishId = req.body.dishes.id;
   var dishId = req.body.dishId;
-  Order.findOne({ status: 'PreOrder' },{ }, function(error, order){
+  Order.findOne({ status: 'preorder' },{ }, function(error, order){
     if(order === null){
       Dish.findOne({ _id: dishId }, { }, function(error, dish){
         if(dish === null){
@@ -29,11 +29,23 @@ exports.create = function(req, res){
         order._creator = req.user._id;
         order.dishes.push({
           _dish: dish,
-          quantity: 1
+          name: dish.name,
+          dishImage: dish.dishImage,
+          price: dish.price,
+          quantity: 1,
+          sumPrice: dish.price*1
         });
-        order.deliverInfo = null;
-        order.totalPrice = null;
-        order.status = 'PreOrder';
+        order.deliverInfo = {
+          address: null,
+          name: null,
+          phone: null,
+          time: {
+            date: null,
+            time: null
+          }
+        };
+        order.totalPrice = dish.price;
+        order.status = 'preorder';
         order.save(function(err) {
           if(err){
             return res.status(400).send({
@@ -44,7 +56,6 @@ exports.create = function(req, res){
           }
         });
       });
-
     }else{
       Dish.findOne({ _id: dishId }, { }, function(error, dish){
         if(dish === null){
@@ -56,16 +67,21 @@ exports.create = function(req, res){
         _.each(order.dishes, function(dishItem){
           if(String(dishItem._dish) === String(dish._id)){
             ++dishItem.quantity;
+            dish.sumPrice += dish.price;
             existing = true;
           }
         });
         if(existing === false){
           order.dishes.push({
             _dish: dish,
-            quantity: 1
+            name: dish.name,
+            dishImage: dish.dishImage,
+            price: dish.price,
+            quantity: 1,
+            sumPrice: dish.price
           });
         }
-
+        order.totalPrice += dish.price;
         order.save(function(err) {
           if(err){
             return res.status(400).send({
@@ -94,6 +110,16 @@ exports.read = function(req, res) {
   res.jsonp(order);
 };
 
+/*Read order by status*/
+/*exports.orderByStatus = function(req, res) {
+  var status = req.body.status;
+  Order.findOne({ 'status' : status }, { }, function(error, order){
+    order.isCurrentUserOwner = req.user && order.user && order.user._id.toString() === req.user._id.toString() ? true : false;
+    res.jsonp(order);
+  });
+};*/
+
+
 /**
  * Update a Order
  */
@@ -101,7 +127,7 @@ exports.update = function(req, res) {
   console.log('HI');
   var order = req.order;
   order = _.extend(order , req.body);
-
+  console.log('>>>>>'+ order);
   order.save(function(err) {
     if (err) {
       return res.status(400).send({
@@ -134,7 +160,8 @@ exports.delete = function(req, res) {
  * List of Orders
  */
 exports.list = function(req, res) {
-  Order.find().sort('-created').populate('user', 'displayName').exec(function(err, orders) {
+
+  Order.find({ _creator: req.user._id }).sort('-created').exec(function(err, orders) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

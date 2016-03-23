@@ -6,11 +6,7 @@
     <div data-ng-repeat="order in vm.orders"
        class="list-group-item">
       <small class="list-group-item-text">
-       <!--  Posted on
-        <span data-ng-bind="order.created | date:'mediumDate'"></span>
-        by
-        <span data-ng-if="order.user" data-ng-bind="order.user.displayName"></span>
-        <span data-ng-if="!order.user">Deleted User</span> -->
+
         <span><b>Status: </b>{{order.status}}</span>
         <br>
         <span><b>ToalPrice: </b>{{order.totalPrice}}<b> RMB</b></span>
@@ -34,6 +30,6 @@
   </div>
 
   <div class="alert alert-warning text-center" data-ng-if="vm.orders.$resolved && !vm.orders.length">
-    No Orders yet, why don't you <a data-ui-sref="orders.create">create one</a>?
+    Nothing here...
   </div>
 </section>

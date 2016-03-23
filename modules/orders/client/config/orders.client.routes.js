@@ -9,8 +9,14 @@
 
   function routeConfig($stateProvider) {
     $stateProvider
+      .state('recipt', {
+        url: '/recipt/:orderId',
+        templateUrl: 'modules/orders/client/views/recipt.client.view.html',
+        controller: 'ReciptController',
+        controllerAs: 'vm'
+      })
       .state('pay', {
-        url: '/pay',
+        url: '/pay/:orderId',
         templateUrl: 'modules/orders/client/views/pay.client.view.html',
         controller: 'PayController',
         controllerAs: 'vm'
