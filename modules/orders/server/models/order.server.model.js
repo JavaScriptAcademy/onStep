@@ -41,6 +41,6 @@ var OrderSchema = new Schema({
     type: String,
     enum: ['preorder', 'ordered', 'paying', 'paid']
   }
-});
+}, { versionKey: false });
 
 mongoose.model('Order', OrderSchema);
