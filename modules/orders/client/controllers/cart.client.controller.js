@@ -5,9 +5,9 @@
     .module('orders')
     .controller('CartController', CartController);
 
-  CartController.$inject = ['$scope','OrdersService','$location','$state', '$http'];
+  CartController.$inject = ['$window', '$scope','OrdersService','$location','$state', '$http'];
 
-  function CartController($scope, OrdersService, $location, $state, $http) {
+  function CartController($window, $scope, OrdersService, $location, $state, $http) {
     var vm = this;
     $scope.preOrder = null;
     $scope.homePagelink = 'http://localhost:3000/';
@@ -33,14 +33,15 @@
     };
 
     $scope.decreaseQuantity = function(dish){
-      if(dish.quantity > 0){
+      if(dish.quantity > 1){
         dish.quantity--;
         dish.sumPrice = dish.price * dish.quantity;
         $scope.preOrder.totalPrice = $scope.preOrder.totalPrice - dish.price;
       }
       else{
-        dish.quantity = 0;
-        $scope.preOrder.totalPrice = 0;
+        window.alert("Can not stand lesser!");
+        /*dish.quantity = 0;
+        $scope.preOrder.totalPrice = 0;*/
       }
     };
 
@@ -57,5 +58,32 @@
           $state.go('deliver-info',{ orderId: order._id });
         });
     };
+
+    $scope.removeDish = function(dish){
+      debugger;
+      console.log("a");
+      for(var i = 0; i < $scope.preOrder.dishes.length; i++){
+        if(dish._dish === $scope.preOrder.dishes[i]._dish){
+          $scope.preOrder.dishes.splice(i,1);
+          $scope.preOrder.totalPrice = $scope.preOrder.totalPrice - dish.price*dish.quantity;
+          OrdersService.update({ id: $scope.preOrder._id }, $scope.preOrder)
+          .$promise.then(function(response){
+            console.log(response);
+          });
+        }
+      }
+      if($scope.preOrder.dishes.length == 0){
+        console.log($scope.preOrder._id);
+        $scope.preOrder.$remove( function (){
+          console.log("success");
+          $scope.preOrder = null;
+          OrdersService.get({id: $scope.preOrder._id})
+          .$promise.then(function(order){
+            order.remove();
+          })
+        });
+      }
+    }
+
   }
 })();
