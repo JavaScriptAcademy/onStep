@@ -9,16 +9,11 @@
   OrdersService.$inject = ['$resource'];
 
   function OrdersService($resource) {
-    return $resource('api/orders/:orderId/:userId', {
-      orderId: '@_id',
-      userId: '@_userId'
+    return $resource('api/orders/:orderId', {
+      orderId: '@_id'
     }, {
       update: {
         method: 'PUT'
-      },
-      getUserOrder: {
-        method: 'GET',
-        isArray:true
       }
     });
   }
