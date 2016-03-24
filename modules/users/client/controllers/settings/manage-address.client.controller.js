@@ -21,11 +21,11 @@ angular.module('users').controller('addressManageController', ['$scope', '$http'
     };
 
     $scope.addIngredient = function (){
-        $scope.user.addresses = $scope.user.addresses || [];
-        $scope.user.addresses.push({
-          // self.user.address
-        });
-        self.user.address = '';
+      $scope.user.addresses = $scope.user.addresses || [];
+      $scope.user.addresses.push({
+        // self.user.address
+      });
+      self.user.address = '';
     };
 
 

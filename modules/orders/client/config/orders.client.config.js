@@ -19,7 +19,7 @@
       title: 'Cart',
       state: 'cart',
       type: 'item',
-      showBadge: true,
+      badge: true,
       roles: ['user','admin']
     });
 
