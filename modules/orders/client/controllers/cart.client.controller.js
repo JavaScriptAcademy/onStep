@@ -25,7 +25,6 @@
             break;
           }
         }
-        console.log($scope.preOrder);
       });
     };
     $scope.linkOperation = function(dish){
