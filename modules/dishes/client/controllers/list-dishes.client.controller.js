@@ -18,7 +18,7 @@
 
     DishesService.query().$promise.then(function(data) {
         vm.pagedItems = data;
-        vm.pageItems = data.slice(0,vm.itemsPerPage)
+        vm.pageItems = data.slice(0,vm.itemsPerPage);
         vm.filterLength = data.length;
     })
 
@@ -33,7 +33,7 @@
     }
 
     function createLocalOrder(dishId){
-      $rootScope.$broadcast('getCartDishNumber', { dishId: dishId });
+      $rootScope.$broadcast('getCartDishNumber', { value: 1 });
 
       if (vm.authentication.user === '') {
         $state.go('authentication.signin');

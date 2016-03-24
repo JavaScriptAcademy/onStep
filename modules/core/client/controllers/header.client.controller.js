@@ -37,13 +37,9 @@ angular.module('core').controller('HeaderController', ['OrdersService', '$rootSc
       });
 
 
-    $rootScope.$on('getCartDishNumber', function(e, value) {
-      if (value.value === 0) {
-        vm.dishNumber = 0;
-      }else{
-       vm.dishNumber += 1;
-      }
-    });
+      $rootScope.$on('getCartDishNumber', function(e, value) {
+        vm.dishNumber += 1;
+     });
 
   }
   ]);
