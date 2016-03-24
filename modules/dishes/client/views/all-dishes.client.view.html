@@ -1,9 +1,15 @@
 <section>
   <div class="page-header">
     <h1>All dishes</h1>
+
+<div ng-click="vm.showMessage()">
+<pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength" ng-model="vm.currentPage" ng-change="vm.pageChanged()"></pagination>
+</div>
+
+
   </div>
   <div class="row">
-    <div class="col-md-12 thumbnail" data-ng-repeat="dish in vm.dishes">
+    <div class="col-md-12 thumbnail" data-ng-repeat="dish in vm.pageItems">
 
       <div class="thumbnailLeft col-md-3">
         <img data-ui-sref="dishes.view({ dishId: dish._id })" ng-src="{{dish.dishImage}}" alt="{{dish.name}}" />

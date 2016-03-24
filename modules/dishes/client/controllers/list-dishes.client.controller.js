@@ -14,10 +14,23 @@
     vm.dishes = DishesService.query();
     vm.topDish = DishesService.getTopDish();
     vm.ramdomDishes = DishesService.randomDish();
-
     vm.createLocalOrder = createLocalOrder;
-    var cartNo = null;
 
+    DishesService.query().$promise.then(function(data) {
+        vm.pagedItems = data;
+        vm.pageItems = data.slice(0,vm.itemsPerPage)
+        vm.filterLength = data.length;
+    })
+
+    // vm.pagedItems = vm.dishes;
+
+    vm.itemsPerPage = 4;
+    vm.currentPage = 1
+    vm.pageChanged = function() {
+      var begin = vm.itemsPerPage*(vm.currentPage-1)
+      var end = begin+vm.itemsPerPage
+      vm.pageItems = vm.pagedItems.slice(begin,end)
+    }
 
     function createLocalOrder(dishId){
       $rootScope.$broadcast('getCartDishNumber', { dishId: dishId });
