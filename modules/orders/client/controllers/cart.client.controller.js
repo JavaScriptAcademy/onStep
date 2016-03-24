@@ -25,7 +25,6 @@
             break;
           }
         }
-        console.log($scope.preOrder);
       });
     };
     $scope.linkOperation = function(dish){
@@ -52,7 +51,7 @@
     };
     $scope.updateOrder = function(){
       var order = $scope.preOrder;
-      order.status = 'ordered';
+      // order.status = 'ordered';
       OrdersService.update({ id: $scope.preOrder._id }, order)
         .$promise.then(function(response){
           $state.go('deliver-info',{ orderId: order._id });

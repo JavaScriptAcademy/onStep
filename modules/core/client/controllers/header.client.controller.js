@@ -22,14 +22,15 @@ angular.module('core').controller('HeaderController', ['OrdersService', '$rootSc
     });
     var userId = $scope.authentication.user._id;
 
-    vm.dish = OrdersService.getUserOrder({
-      _userId:userId
-    }).$promise.then(function(orders){
-      console.log(orders);
+    vm.dish = OrdersService.query()
+    .$promise
+    .then(function(orders){
       vm.dishNumber = 0;
-      orders[0].dishes.forEach(function(dish){
-        if(dish.status === 'preorder'){
-          vm.dishNumber += dish.quantity;
+      orders.forEach(function(order){
+        if (order.status === 'preorder') {
+          order.dishes.forEach(function(dish){
+            vm.dishNumber += dish.quantity;
+          });
         }
       });
     });
