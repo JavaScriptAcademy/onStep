@@ -33,16 +33,16 @@
       vm.dish.ingredient.name = '';
       vm.dish.ingredient.weight = '';
     }
-// cookingSteps
-function addCookingSteps(){
-  vm.dish.cookingSteps = vm.dish.cookingSteps || [];
-  vm.dish.cookingSteps.push(
-    vm.dish.cookingStep
-    );
-  vm.dish.cookingStep = '';
-}
+    // cookingSteps
+    function addCookingSteps(){
+      vm.dish.cookingSteps = vm.dish.cookingSteps || [];
+      vm.dish.cookingSteps.push(
+        vm.dish.cookingStep
+        );
+      vm.dish.cookingStep = '';
+    }
 
-function createLocalOrder(dishId){
+    function createLocalOrder(dishId){
       // console.log("hello");
       // let order = dishService.getData();
       // vm.orders.push(vm.dish);

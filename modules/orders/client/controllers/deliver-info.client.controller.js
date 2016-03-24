@@ -5,9 +5,9 @@
     .module('orders')
     .controller('DeliverInfoController', DeliverInfoController);
 
-  DeliverInfoController.$inject = ['$scope','OrdersService','$location', '$state', '$stateParams', 'Authentication'];
+  DeliverInfoController.$inject = ['$rootScope', '$scope','OrdersService','$location', '$state', '$stateParams', 'Authentication'];
 
-  function DeliverInfoController($scope, OrdersService, $location, $state, $stateParams, Authentication) {
+  function DeliverInfoController($rootScope, $scope, OrdersService, $location, $state, $stateParams, Authentication) {
     var vm = this;
     $scope.deliverInfo = {
       address: null,
@@ -54,9 +54,12 @@
         //Redict after save
         OrdersService.update({ id: $stateParams.orderId }, order)
           .$promise.then(function(response){
+            $rootScope.$broadcast('getCartDishNumber', { value: 0 });
             $state.go('pay',{ orderId: $stateParams.orderId });
           });
       });
+
+
     };
   }
 })();

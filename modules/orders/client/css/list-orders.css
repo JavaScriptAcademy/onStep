@@ -1,7 +1,9 @@
 .list-orders-page{
-  font-size: 1.3em;
+  font-size: 1.8rem;
 }
-
+.procedure-details p{
+  font-size: 1.3rem;
+}
 .order-list-panel:hover{
   cursor: pointer;
 }

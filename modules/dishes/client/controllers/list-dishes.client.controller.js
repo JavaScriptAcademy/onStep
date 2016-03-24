@@ -5,23 +5,35 @@
   .module('dishes')
   .controller('DishesListController', DishesListController);
 
-  DishesListController.$inject = ['DishesService','RandomService','OrdersService','Authentication','$state', 'AllDishesService'];
+  DishesListController.$inject = ['$rootScope', 'DishesService','OrdersService','Authentication','$state'];
 
-  function DishesListController( DishesService, RandomService, OrdersService, Authentication, $state, AllDishesService) {
+  function DishesListController($rootScope, DishesService, OrdersService, Authentication, $state) {
     var vm = this;
-    vm.dishes = DishesService.query();
-    vm.ramdomDishes = RandomService.query();
     vm.authentication = Authentication;
-    vm.allDishes = AllDishesService.query();
 
+    vm.dishes = DishesService.query();
+    vm.topDish = DishesService.getTopDish();
+    vm.ramdomDishes = DishesService.randomDish();
     vm.createLocalOrder = createLocalOrder;
-    function createLocalOrder(dishId){
-      // console.log("hello");
-      // let order = dishService.getData();
-      // vm.orders.push(vm.dish);
-      // console.log(vm.orders);
-      // vm.dishService.setData(vm.orders);
 
+    DishesService.query().$promise.then(function(data) {
+        vm.pagedItems = data;
+        vm.pageItems = data.slice(0,vm.itemsPerPage)
+        vm.filterLength = data.length;
+    })
+
+    // vm.pagedItems = vm.dishes;
+
+    vm.itemsPerPage = 4;
+    vm.currentPage = 1
+    vm.pageChanged = function() {
+      var begin = vm.itemsPerPage*(vm.currentPage-1)
+      var end = begin+vm.itemsPerPage
+      vm.pageItems = vm.pagedItems.slice(begin,end)
+    }
+
+    function createLocalOrder(dishId){
+      $rootScope.$broadcast('getCartDishNumber', { dishId: dishId });
 
       if (vm.authentication.user === '') {
         $state.go('authentication.signin');
