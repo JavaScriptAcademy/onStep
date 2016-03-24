@@ -68,6 +68,7 @@ exports.signin = function (req, res, next) {
         if (err) {
           res.status(400).send(err);
         } else {
+          // $rootScope.$broadcast('getCartDishNumber');
           res.json(user);
         }
       });

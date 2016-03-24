@@ -23,27 +23,33 @@ angular.module('core').controller('HeaderController', ['OrdersService', '$rootSc
     var userId = $scope.authentication.user._id;
 
 
-      vm.dish = OrdersService.query()
-      .$promise
-      .then(function(orders){
-        vm.dishNumber = 0;
-        orders.forEach(function(order){
-          if (order.status === 'preorder') {
-            order.dishes.forEach(function(dish){
-              vm.dishNumber += dish.quantity;
+    vm.dish = getUserOrder();
+
+
+    function getUserOrder(){
+      OrdersService.query()
+          .$promise
+          .then(function(orders){
+            vm.dishNumber = 0;
+            orders.forEach(function(order){
+              if (order.status === 'preorder') {
+                order.dishes.forEach(function(dish){
+                  vm.dishNumber += dish.quantity;
+                });
+              }
             });
-          }
-        });
-      });
+          });
+    }
 
 
     $rootScope.$on('getCartDishNumber', function(e, value) {
-      if (value.value === 0) {
-        vm.dishNumber = 0;
-      }else{
-       vm.dishNumber += 1;
-      }
+      // vm.dishNumber += 1;
+      vm.dish = getUserOrder();
     });
+
+    $rootScope.$on('increaseCartDishNumber', function(e, value) {
+        vm.dishNumber += 1;
+     });
 
   }
   ]);

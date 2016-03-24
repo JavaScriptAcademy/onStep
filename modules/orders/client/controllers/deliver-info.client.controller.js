@@ -54,7 +54,7 @@
         //Redict after save
         OrdersService.update({ id: $stateParams.orderId }, order)
           .$promise.then(function(response){
-            $rootScope.$broadcast('getCartDishNumber', { value: 0 });
+            $rootScope.$broadcast('getCartDishNumber');
             $state.go('pay',{ orderId: $stateParams.orderId });
           });
       });
