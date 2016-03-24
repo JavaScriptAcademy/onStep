@@ -207,3 +207,17 @@ exports.orderByID = function(req, res, next, id) {
     next();
   });
 };
+
+exports.getUserOrder = function(req, res, next, id) {
+  console.log(req._userId);
+  Order.find({ _creator: req.user._id }).exec(function(err, orders) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      console.log(11);
+      res.jsonp(orders);
+    }
+  });
+};

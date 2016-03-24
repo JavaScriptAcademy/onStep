@@ -1,4 +1,4 @@
-<div ng-controller="HeaderController">
+<div ng-controller="HeaderController as headerCtrl">
   <div class="navbar-header">
     <button class="navbar-toggle" type="button" ng-click="toggleCollapsibleMenu()">
       <span class="sr-only">Toggle navigation</span>
@@ -17,7 +17,11 @@
             <a ui-sref="{{subitem.state}}" ng-bind="subitem.title"></a>
           </li>
         </ul>
-        <a ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
+        <a ng-switch-default ui-sref="{{item.state}}">
+          {{item.title}}
+          <span class="badge"
+                ng-if="item.badge && headerCtrl.dishNumber != 0">{{headerCtrl.dishNumber}}</span>
+        </a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right" ng-hide="authentication.user">

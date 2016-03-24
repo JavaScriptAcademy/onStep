@@ -23,7 +23,7 @@ img.cart-dish-image, a.cart-dish-image{
 }
 
 .cart-quantity-input{
-  display: inline;
+  display: inline-block;
   width: 30%;
 }
 
