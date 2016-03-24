@@ -1,6 +1,7 @@
 <section>
   <div class="page-header">
     <span data-ng-bind="vm.dish.name"></span>
+    <hr>
     <img src="{{vm.dish.dishImage}}" alt="{{vm.dish.name}}" class="img-rounded">
     <br>
 
@@ -22,22 +23,50 @@
     </div>
     <div class="des">
       <hr>
-      <h1>ingredients:</h1>
-      <h4 data-ng-repeat="ingredient in vm.dish.ingredients">
 
-      {{ingredient.name}}:{{ingredient.weight}}g</h4>
-      <hr>
-      <h1>Cooking Steps:</h1>
-      <h4 data-ng-repeat="cookingSteps in vm.dish.cookingSteps">
+      <div class="panel panel-info panelForDetail">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>Dish Price:</strong></h3>
+        </div>
+        <div class="panel-body" data-ng-bind="vm.dish.price | currency:'￥'"></div>
+      </div>
+      <div class="panel panel-info panelForDetail">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>Order Times:</strong></h3>
+        </div>
+        <div class="panel-body" data-ng-bind="vm.dish.orderTimes"></div>
+      </div>
+      <div class="panel panel-info panelForDetail">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>Ingredients:</strong></h3>
+        </div>
+        <div class="panel-body">
+          <table class="table">
+            <tr data-ng-repeat="ingredient in vm.dish.ingredients">
+              <th>{{ingredient.name}}</th>
+              <td colspan='3'>{{ingredient.weight}}g</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="panel panel-info panelForDetail">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>Cooking Steps:</strong></h3>
+        </div>
+        <div class="panel-body">
+          <table class="table">
+            <tr data-ng-repeat="ingredient in vm.dish.ingredients">
+              <th>Step {{$index+1}}</th>
+              <td colspan='3'>{{cookingSteps}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
 
-      Step {{$index+1}} :{{cookingSteps}} </h4>
-      <hr>
-      <h1>Dish Price:</h1>
-      <h4 data-ng-bind="vm.dish.price | currency:'￥'"></h4>
-      <h1>Order Times:</h1>
-      <h4 data-ng-bind="vm.dish.orderTimes"></h4>
     </div>
   </div>
 
   <p class="lead" data-ng-bind="vm.dish.content"></p>
 </section>
+
+

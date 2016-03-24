@@ -7,15 +7,16 @@
   display: block;
 }
 .page-header img{
- margin: 90px 0;
+  width: 70%;
+  margin: 10px 0;
 }
 .button-group a {
-  margin: 0 20px;
+  margin: 10px 20px;
   padding: 10px 75px;
 }
 
 .des{
-  margin: 50px 0;
+  margin: 20px 0;
 }
 .des h1{
   line-height: 70px;
@@ -34,4 +35,9 @@
   margin-left: -8px;
   top: -40px;
   color: #f39c12;
+}
+.panelForDetail{
+  width: 70%;
+  margin: 1em auto;
+  font-size: 16px;
 }
