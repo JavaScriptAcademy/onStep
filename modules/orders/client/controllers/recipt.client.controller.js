@@ -23,14 +23,14 @@
       });
     };
     $scope.print = function(){
-       /*window.print();*/
-      var bdhtml=window.document.body.innerHTML;
+       window.print();
+/*      var bdhtml=window.document.body.innerHTML;
       var sprnstr='<!--startprint-->';
       var eprnstr='<!--endprint-->';
       var prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+17);
       prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
       window.document.body.innerHTML=prnhtml;
-      window.print();
+      window.print();*/
         // window.close();
         // $timeout(function () { window.close(); }, 40);
         // $state.go('recipt',{ orderId: $stateParams.orderId });
