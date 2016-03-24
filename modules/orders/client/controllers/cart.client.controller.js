@@ -10,7 +10,7 @@
   function CartController($scope, OrdersService, $location, $state, $http) {
     var vm = this;
     $scope.preOrder = null;
-    $scope.homePagelink = "http://localhost:3000/";
+    $scope.homePagelink = 'http://localhost:3000/';
 
     //Get Init Order from local
     $scope.getInitOrder = function(){
@@ -31,7 +31,7 @@
     $scope.linkOperation = function(dish){
       // $state.go('dishes.view',{ dishId: dish._id });
       $location.path('/dishes/'+ dish._dish);
-    }
+    };
     $scope.decreaseQuantity = function(dish){
       if(dish.quantity > 0){
         dish.quantity--;
