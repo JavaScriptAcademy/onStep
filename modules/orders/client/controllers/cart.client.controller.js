@@ -60,7 +60,6 @@
     };
 
     $scope.removeDish = function(dish){
-      debugger;
       console.log("a");
       for(var i = 0; i < $scope.preOrder.dishes.length; i++){
         if(dish._dish === $scope.preOrder.dishes[i]._dish){
@@ -68,7 +67,8 @@
           $scope.preOrder.totalPrice = $scope.preOrder.totalPrice - dish.price*dish.quantity;
           OrdersService.update({ id: $scope.preOrder._id }, $scope.preOrder)
           .$promise.then(function(response){
-            console.log(response);
+            // $rootScope.$broadcast('getCartDishNumber');
+
           });
         }
       }

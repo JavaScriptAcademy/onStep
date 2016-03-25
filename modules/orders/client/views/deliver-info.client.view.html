@@ -4,7 +4,7 @@
     <div class="form-group" ng-class="{ 'has-error' : orderForm.address.$invalid && !orderForm.address.$pristine }">
       <label class="col-sm-2 col-md-2 control-label">Address</label>
       <div class="col-sm-10 col-md-10">
-        <input type="text" list="deliverInfoDatalistAddress" name="address" class="form-control" placeholder="Your address" ng-model="deliverInfo.address" required>
+        <input type="text" list="deliverInfoDatalistAddress" name="address" class="form-control" placeholder="Your address" ng-model="deliverInfo.address" required autocomplete="off">
         <datalist id="deliverInfoDatalistAddress">
           <option value="{{address}}" ng-repeat="address in deliverInfos.addresses">
         </datalist>
@@ -15,7 +15,7 @@
     <div class="form-group" ng-class="{ 'has-error' : orderForm.name.$invalid && !orderForm.name.$pristine }">
       <label class="col-sm-2 col-md-2 control-label">Name</label>
       <div class="col-sm-10">
-        <input type="text" list="deliverInfoDatalistName" name="name" class="form-control" placeholder="Your Name" ng-model="deliverInfo.name" required>
+        <input type="text" list="deliverInfoDatalistName" name="name" class="form-control" placeholder="Your Name" ng-model="deliverInfo.name" required autocomplete="off">
         <datalist id="deliverInfoDatalistName">
           <option value="{{name}}" ng-repeat="name in deliverInfos.names">
         </datalist>
@@ -26,7 +26,7 @@
     <div class="form-group" ng-class="{ 'has-error' : orderForm.phone.$invalid && !orderForm.phone.$pristine }">
       <label class="col-sm-2 col-md-2 control-label">PhoneNo.</label>
       <div class="col-sm-10 col-md-10">
-        <input type="text" list="deliverInfoDatalistPhoneNumber" name="phone" class="form-control" placeholder="Phone Number" ng-model="deliverInfo.phone" required>
+        <input type="text" list="deliverInfoDatalistPhoneNumber" name="phone" class="form-control" placeholder="Phone Number" ng-model="deliverInfo.phone" required autocomplete="off">
         <datalist id="deliverInfoDatalistPhoneNumber">
           <option value="{{phone}}" ng-repeat="phone in deliverInfos.phones">
         </datalist>

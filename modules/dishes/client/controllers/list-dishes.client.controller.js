@@ -20,7 +20,7 @@
         vm.pagedItems = data;
         vm.pageItems = data.slice(0,vm.itemsPerPage);
         vm.filterLength = data.length;
-    })
+    });
 
     // vm.pagedItems = vm.dishes;
 
@@ -30,7 +30,7 @@
       var begin = vm.itemsPerPage*(vm.currentPage-1);
       var end = begin+vm.itemsPerPage;
       vm.pageItems = vm.pagedItems.slice(begin,end);
-    }
+    };
 
     function createLocalOrder(dishId){
       $rootScope.$broadcast('increaseCartDishNumber');
@@ -38,9 +38,10 @@
       if (vm.authentication.user === '') {
         $state.go('authentication.signin');
       }else{
-        vm.order = new OrdersService();
-        vm.order.dishId = dishId;
+        vm.order = new OrdersService({dishId:dishId});
+        // vm.order.dishId = dishId;
         vm.order.$save(successCallback, errorCallback);
+        // OrdersService.save({},{dishId:dishId});
       }
       function successCallback(res) {
 
