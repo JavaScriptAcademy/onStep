@@ -1,6 +1,5 @@
 ## One step
-
-	One step is an application to provide the convinience for salarymen who are busy with working but prefer to cook themselves. With the help of one step, you only need one click to order the dish and receive the ingrediants at any time you want.
+One step is an application to provide the convinience for salarymen who are busy with working but prefer to cook themselves. With the help of one step, you only need one click to order the dish and receive the ingrediants at any time you want.
 	
 ## Prerequisites
 Make sure you have installed all of the following prerequisites on your development machine:
