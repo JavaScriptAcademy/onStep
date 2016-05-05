@@ -17,9 +17,9 @@
     vm.createLocalOrder = createLocalOrder;
 
     DishesService.query().$promise.then(function(data) {
-        vm.pagedItems = data;
-        vm.pageItems = data.slice(0,vm.itemsPerPage);
-        vm.filterLength = data.length;
+      vm.pagedItems = data;
+      vm.pageItems = data.slice(0,vm.itemsPerPage);
+      vm.filterLength = data.length;
     });
 
     // vm.pagedItems = vm.dishes;
@@ -38,7 +38,7 @@
       if (vm.authentication.user === '') {
         $state.go('authentication.signin');
       }else{
-        vm.order = new OrdersService({dishId:dishId});
+        vm.order = new OrdersService({ dishId:dishId });
         // vm.order.dishId = dishId;
         vm.order.$save(successCallback, errorCallback);
         // OrdersService.save({},{dishId:dishId});

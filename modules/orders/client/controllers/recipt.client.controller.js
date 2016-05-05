@@ -23,7 +23,7 @@
       });
     };
     $scope.print = function(){
-       window.print();
+      window.print();
 /*      var bdhtml=window.document.body.innerHTML;
       var sprnstr='<!--startprint-->';
       var eprnstr='<!--endprint-->';

@@ -39,7 +39,7 @@
         $scope.preOrder.totalPrice = $scope.preOrder.totalPrice - dish.price;
       }
       else{
-        window.alert("Can not stand lesser!");
+        window.alert('Can not stand lesser!');
         /*dish.quantity = 0;
         $scope.preOrder.totalPrice = 0;*/
       }
@@ -60,30 +60,25 @@
     };
 
     $scope.removeDish = function(dish){
-      console.log("a");
       for(var i = 0; i < $scope.preOrder.dishes.length; i++){
         if(dish._dish === $scope.preOrder.dishes[i]._dish){
           $scope.preOrder.dishes.splice(i,1);
           $scope.preOrder.totalPrice = $scope.preOrder.totalPrice - dish.price*dish.quantity;
           OrdersService.update({ id: $scope.preOrder._id }, $scope.preOrder)
-          .$promise.then(function(response){
-            // $rootScope.$broadcast('getCartDishNumber');
-
-          });
+          .$promise.then();
         }
       }
-      if($scope.preOrder.dishes.length == 0){
+      if($scope.preOrder.dishes.length === 0){
         console.log($scope.preOrder._id);
-        $scope.preOrder.$remove( function (){
-          console.log("success");
+        $scope.preOrder.$remove(function(){
           $scope.preOrder = null;
-          OrdersService.get({id: $scope.preOrder._id})
+          OrdersService.get({ id: $scope.preOrder._id })
           .$promise.then(function(order){
             order.remove();
-          })
+          });
         });
       }
-    }
+    };
 
   }
 })();
